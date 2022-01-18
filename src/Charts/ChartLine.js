@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { useState, useEffect } from "react";
 import { Context } from "../Context/Context";
+import { financialmodelingprepApikey } from "../apikey/apikey";
 export default function ChartLine() {
   const [context, setContext] = useContext(Context);
   console.log(context);
@@ -10,7 +11,7 @@ export default function ChartLine() {
   const [date, setDate] = useState("Week");
   async function fetchChartMonth() {
     const res = await fetch(
-      `https://financialmodelingprep.com/api/v3/historical-price-full/${context}?serietype=line&apikey=39caf286d742842fbd4649b05b6eff0d`
+      `https://financialmodelingprep.com/api/v3/historical-price-full/${context}?serietype=line&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
     const HistoricalData = data.historical;

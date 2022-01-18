@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { Context } from "../Context/Context";
+import { financialmodelingprepApikey } from "../apikey/apikey";
 
 export const RevenueEarning = () => {
   const [context, setContext] = useContext(Context);
@@ -13,7 +14,7 @@ export const RevenueEarning = () => {
 
   async function fetchRevenueEarningYear() {
     const res = await fetch(
-      `https://financialmodelingprep.com/api/v3/income-statement/${context}?limit=120&apikey=39caf286d742842fbd4649b05b6eff0d`
+      `https://financialmodelingprep.com/api/v3/income-statement/${context}?limit=120&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
     setFetchData({

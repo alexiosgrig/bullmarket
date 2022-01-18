@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
+import { finnhubApikey } from "../apikey/apikey";
 export default function News() {
   const [news, setNews] = useState({
     category: "",
@@ -12,7 +13,7 @@ export default function News() {
   });
   async function fetchNews() {
     const res = await fetch(
-      "https://finnhub.io/api/v1/news?category=crypto&token=c7eaef2ad3ifpe0p8dkg"
+      `https://finnhub.io/api/v1/news?category=crypto&token=${finnhubApikey}`
     );
     const data = await res.json();
     setNews({

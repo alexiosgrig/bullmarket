@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../Context/Context";
+import { financialmodelingprepApikey } from "../apikey/apikey";
 
 export const CashFlow = () => {
   console.log(separator(100));
@@ -57,7 +58,7 @@ export const CashFlow = () => {
   });
   async function fetchCashFlow() {
     const res = await fetch(
-      `https://financialmodelingprep.com/api/v3/income-statement-as-reported/${context}?limit=10&apikey=27e30c366f6b2d5ccd0915478fe5bd68`
+      `https://financialmodelingprep.com/api/v3/income-statement-as-reported/${context}?limit=10&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
     setDataInfo({

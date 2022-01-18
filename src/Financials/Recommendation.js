@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Bar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { Context } from "../Context/Context";
+import { finnhubApikey } from "../apikey/apikey";
 
 export const Recommendation = () => {
   const [context, setContext] = useContext(Context);
@@ -14,7 +15,7 @@ export const Recommendation = () => {
   });
   async function fetchRecommendations() {
     const res = await fetch(
-      `https://finnhub.io/api/v1/stock/recommendation?symbol=${context}&token=c7eaef2ad3ifpe0p8dkg`
+      `https://finnhub.io/api/v1/stock/recommendation?symbol=${context}&token=${finnhubApikey}`
     );
     const data = await res.json();
     setDataRecommend({

@@ -3,6 +3,7 @@ import Border from "../Border/Border";
 import { useState, useEffect, useContext } from "react";
 import "../css/App.css";
 import { Context } from "../Context/Context";
+import { finnhubApikey } from "../apikey/apikey";
 
 export default function StockScreener() {
   const [context, setContext] = useContext(Context);
@@ -20,7 +21,7 @@ export default function StockScreener() {
   }, [context]);
   async function fetchStockInfo() {
     const res = await fetch(
-      `https://finnhub.io/api/v1/stock/profile2?symbol=${context}&token=c7eaef2ad3ifpe0p8dkg`
+      `https://finnhub.io/api/v1/stock/profile2?symbol=${context}&token=${finnhubApikey}`
     );
     const data = await res.json();
     console.log(data.country);

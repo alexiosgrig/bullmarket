@@ -1,3 +1,12 @@
+#FINANCIAL WEB APPLICATION BUILD WITH REACT.JS AND CHARTS.JS
+
+The app is still in progress...
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

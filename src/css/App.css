@@ -1,0 +1,124 @@
+.Border {
+  border-radius: 5px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  height: auto;
+  width: auto;
+  background-color: gainsboro;
+  margin-left: 100px;
+}
+
+.BorderScreener {
+  border-radius: 5px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  width: auto;
+  height: 25rem;
+  background-color: gainsboro;
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+.Submit {
+  margin-bottom: 10px;
+  margin-left: 10%;
+  border-radius: 5px;
+  background-color: indigo;
+  color: white;
+}
+.InputStock {
+  text-transform: uppercase;
+  color: black;
+  border-radius: 5px;
+  text-align: center;
+}
+.InputStockInvalid {
+  background-color: #ffcccc;
+  text-transform: uppercase;
+  border-color: #ff6666;
+  border-radius: 5px;
+}
+.InputPlacement {
+  margin-left: 40%;
+}
+
+.Info {
+  margin-left: 40%;
+}
+.NavBar {
+  position: fixed;
+  left: 0;
+  width: 100px;
+  height: 100%;
+  background-color: black;
+  /* border-color: white; */
+  /* border-style: solid;
+  border-width: 1px; */
+  /* margin-right: 100px; */
+}
+.logoStock {
+  margin-top: 100px;
+  position: relative;
+}
+.stockTable {
+  margin-left: -200px;
+  margin-right: 100px;
+  margin-top: 50px;
+}
+th {
+  margin-top: -10px;
+}
+.NewsBorder {
+  border-radius: 10px;
+  border-style: outset;
+  border-width: 5px;
+  border-color: rgb(231, 231, 231);
+  height: auto;
+  margin-left: 100px;
+  margin-top: 20px;
+  background-color: rgb(94, 94, 94);
+}
+
+.ChartLine {
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  margin-left: 100px;
+}
+.Revenue {
+  margin-top: 100px;
+  width: 500px;
+  height: 500px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.BrowserUl {
+  border-width: 100px;
+  border-style: solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(73, 79, 82);
+  color: white;
+}
+
+.BrowserLi {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+}

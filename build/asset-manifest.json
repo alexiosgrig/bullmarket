@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/bullmarket/static/css/main.d0268953.chunk.css",
-    "main.js": "/bullmarket/static/js/main.c27c2c73.chunk.js",
-    "main.js.map": "/bullmarket/static/js/main.c27c2c73.chunk.js.map",
+    "main.js": "/bullmarket/static/js/main.84e7de26.chunk.js",
+    "main.js.map": "/bullmarket/static/js/main.84e7de26.chunk.js.map",
     "runtime~main.js": "/bullmarket/static/js/runtime~main.501194e9.js",
     "runtime~main.js.map": "/bullmarket/static/js/runtime~main.501194e9.js.map",
     "static/js/2.469a0cef.chunk.js": "/bullmarket/static/js/2.469a0cef.chunk.js",
     "static/js/2.469a0cef.chunk.js.map": "/bullmarket/static/js/2.469a0cef.chunk.js.map",
     "index.html": "/bullmarket/index.html",
-    "precache-manifest.47883106a8aff153f0482491b9dde7c0.js": "/bullmarket/precache-manifest.47883106a8aff153f0482491b9dde7c0.js",
+    "precache-manifest.0520d8e1c75e70137f6a837fa27d5d12.js": "/bullmarket/precache-manifest.0520d8e1c75e70137f6a837fa27d5d12.js",
     "service-worker.js": "/bullmarket/service-worker.js",
     "static/css/main.d0268953.chunk.css.map": "/bullmarket/static/css/main.d0268953.chunk.css.map"
   }

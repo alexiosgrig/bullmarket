@@ -20,12 +20,10 @@ function App() {
         {/* <StockScreener></StockScreener> */}
         <BrowseBar></BrowseBar>
         {/* <NavBar></NavBar> */}
-
         {/* <News></News> */}
-        {/* <ChartLine></ChartLine> */}
-        {/* <RevenueEarning></RevenueEarning> */}
-
-        {/* <Recommendation></Recommendation> */}
+        <ChartLine></ChartLine>
+        <RevenueEarning></RevenueEarning>
+        <Recommendation></Recommendation>
       </Context.Provider>
     </div>
   );

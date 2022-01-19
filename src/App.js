@@ -20,7 +20,7 @@ function App() {
         {/* <StockScreener></StockScreener> */}
         <BrowseBar></BrowseBar>
         {/* <NavBar></NavBar> */}
-        {/* <News></News> */}
+        <News></News>
         <ChartLine></ChartLine>
         <RevenueEarning></RevenueEarning>
         <Recommendation></Recommendation>

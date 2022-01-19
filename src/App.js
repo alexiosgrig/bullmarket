@@ -8,7 +8,7 @@ import ChartLine from "./Charts/ChartLine";
 import { Context } from "./Context/Context";
 import { RevenueEarning } from "./Charts/RevenueEarning";
 import { Recommendation } from "./Financials/Recommendation";
-import { CashFlow } from "./Financials/CashFlow";
+import { CashFlow } from "./Financials/IncomeStatement";
 import { BrowseBar } from "./Financials/BrowseBar";
 import { BrowseFinancial } from "./NavBar/BrowseFinancial";
 function App() {
@@ -20,7 +20,7 @@ function App() {
         {/* <StockScreener></StockScreener> */}
         <BrowseBar></BrowseBar>
         {/* <NavBar></NavBar> */}
-        <News></News>
+        {/* <News></News> */}
         <ChartLine></ChartLine>
         <RevenueEarning></RevenueEarning>
         <Recommendation></Recommendation>

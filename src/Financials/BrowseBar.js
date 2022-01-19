@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Switch, Route, Link } from "react-router-dom";
 import { BrowseFinancial } from "../NavBar/BrowseFinancial";
 import { BalanceSheet } from "./BalanceSheet";
-import { CashFlow } from "./CashFlow";
 import { IncomeStatement } from "./IncomeStatement";
+import { CashFlow } from "./CashFlow";
+
 export const BrowseBar = () => {
   return (
     <BrowserRouter>

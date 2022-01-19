@@ -1,80 +1,64 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../Context/Context";
 import { financialmodelingprepApikey } from "../apikey/apikey";
-
+import { Context } from "../Context/Context";
 export const CashFlow = () => {
-  console.log(separator(100));
-  function separator(numb) {
-    let str = numb.toString().split(".");
-    str[0] = str[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return str.join(".");
-  }
   const [context, setContext] = useContext(Context);
   const [dataInfo, setDataInfo] = useState({
-    date: ["", "", "", ""],
-    symbol: ["", "", "", ""],
-    period: ["", "", "", ""],
-    costofgoodsandservicessold: ["", "", "", ""],
-    netincomeloss: ["", "", "", ""],
-    researchanddevelopmentexpense: ["", "", "", ""],
-    grossprofit: ["", "", "", ""],
-    othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax:
-      ["", "", "", ""],
-    othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax:
-      ["", "", "", ""],
-    othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax:
-      ["", "", "", ""],
-    weightedaveragenumberofdilutedsharesoutstanding: ["", "", "", ""],
-    weightedaveragenumberofsharesoutstandingbasic: ["", "", "", ""],
-    operatingincomeloss: ["", "", "", ""],
-    nonoperatingincomeexpense: ["", "", "", ""],
-    incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest:
-      ["", "", "", ""],
-    othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax: [
-      "",
-      "",
-      "",
-      "",
-    ],
-    earningspersharebasic: ["", "", "", ""],
-    incometaxexpensebenefit: ["", "", "", ""],
-    othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax:
-      ["", "", "", ""],
-    revenuefromcontractwithcustomerexcludingassessedtax: ["", "", "", ""],
-    earningspersharediluted: ["", "", "", ""],
-    operatingexpenses: ["", "", "", ""],
-    othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax:
-      ["", "", "", ""],
-    sellinggeneralandadministrativeexpense: ["", "", "", ""],
-    othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax:
-      ["", "", "", ""],
-    othercomprehensiveincomelossnetoftaxportionattributabletoparent: [
-      "",
-      "",
-      "",
-      "",
-    ],
-    comprehensiveincomenetoftax: ["", "", "", ""],
+    date: [],
+    netIncome: [],
+    netincomeloss: [],
+    depreciationAndAmortization: [],
+    deferredIncomeTax: [],
+    stockBasedCompensation: [],
+    changeInWorkingCapital: [],
+    accountsReceivables: [],
+    inventory: [],
+    accountsPayables: [],
+    otherWorkingCapital: [],
+    otherNonCashItems: [],
+    netCashProvidedByOperatingActivities: [],
+    investmentsInPropertyPlantAndEquipment: [],
+    acquisitionsNet: [],
+    purchasesOfInvestments: [],
+    salesMaturitiesOfInvestments: [],
+    otherInvestingActivites: [],
+    netCashUsedForInvestingActivites: [],
+    debtRepayment: [],
+    commonStockIssued: [],
+    commonStockRepurchased: [],
+    dividendsPaid: [],
+    otherFinancingActivites: [],
+    netCashUsedProvidedByFinancingActivities: [],
+    effectOfForexChangesOnCash: [],
+    netChangeInCash: [],
+    cashAtEndOfPeriod: [],
+    cashAtBeginningOfPeriod: [],
+    operatingCashFlow: [],
+    capitalExpenditure: [],
+    freeCashFlow: [],
   });
-  async function fetchCashFlow() {
+
+  async function fetchIncomeStatement() {
     const res = await fetch(
-      `https://financialmodelingprep.com/api/v3/income-statement-as-reported/${context}?limit=10&apikey=${financialmodelingprepApikey}`
+      `https://financialmodelingprep.com/api/v3/cash-flow-statement/${context}?limit=120&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
     setDataInfo({
       date: data
         .map((date) => {
-          return date.date;
+          if (date.date === undefined) {
+            return (date.date = "-");
+          } else {
+            return date.date;
+          }
         })
         .slice(0, 4),
-      symbol: "",
-      period: "",
-      costofgoodsandservicessold: data
+      netIncome: data
         .map((date) => {
-          if (date.costofgoodsandservicessold === undefined) {
-            return (date.costofgoodsandservicessold = "-");
+          if (date.netIncome === undefined) {
+            return (date.netIncome = "-");
           } else {
-            return date.costofgoodsandservicessold / 1000000;
+            return date.netIncome / 1000000;
           }
         })
         .slice(0, 4),
@@ -87,301 +71,277 @@ export const CashFlow = () => {
           }
         })
         .slice(0, 4),
-      researchanddevelopmentexpense: data
+      depreciationAndAmortization: data
         .map((date) => {
-          if (date.researchanddevelopmentexpense === undefined) {
-            return (date.researchanddevelopmentexpenses = "-");
+          if (date.depreciationAndAmortization === undefined) {
+            return (date.depreciationAndAmortization = "-");
           } else {
-            return date.researchanddevelopmentexpense / 1000000;
+            return date.depreciationAndAmortization / 1000000;
           }
         })
         .slice(0, 4),
-      grossprofit: data
+      deferredIncomeTax: data
         .map((date) => {
-          if (date.grossprofit === undefined) {
-            return (date.grossprofit = "-");
+          if (date.deferredIncomeTax === undefined) {
+            return (date.deferredIncomeTax = "-");
           } else {
-            return date.grossprofit / 1000000;
+            return date.deferredIncomeTax / 1000000;
           }
         })
         .slice(0, 4),
-      othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax:
-        data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax /
-                1000000
-              );
-            }
-          })
-          .slice(0, 4),
-      othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax:
-        data.map((date) => {
-          if (
-            date.othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax ===
-            undefined
-          ) {
-            return (date.othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax =
-              "-");
-          } else {
-            return (
-              date.othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax /
-              1000000
-            );
-          }
-        }),
-      othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax:
-        data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax /
-                1000000
-              );
-            }
-          })
-          .slice(0, 4),
-      weightedaveragenumberofdilutedsharesoutstanding: data
+      stockBasedCompensation: data
         .map((date) => {
-          if (
-            date.weightedaveragenumberofdilutedsharesoutstanding === undefined
-          ) {
-            return (date.weightedaveragenumberofdilutedsharesoutstanding = "-");
+          if (date.stockBasedCompensation === undefined) {
+            return (date.stockBasedCompensation = "-");
           } else {
-            return (
-              date.weightedaveragenumberofdilutedsharesoutstanding / 1000000
-            );
+            return date.stockBasedCompensation / 1000000;
           }
         })
         .slice(0, 4),
-      weightedaveragenumberofsharesoutstandingbasic: data
+      changeInWorkingCapital: data
         .map((date) => {
-          if (
-            date.weightedaveragenumberofsharesoutstandingbasic === undefined
-          ) {
-            return (date.weightedaveragenumberofsharesoutstandingbasic = "-");
+          if (date.changeInWorkingCapital === undefined) {
+            return (date.changeInWorkingCapital = "-");
           } else {
-            return date.weightedaveragenumberofsharesoutstandingbasic / 1000000;
+            return date.changeInWorkingCapital / 1000000;
           }
         })
         .slice(0, 4),
-      operatingincomeloss: data
+      accountsReceivables: data
         .map((date) => {
-          if (date.operatingincomeloss === undefined) {
-            return (date.operatingincomeloss = "-");
+          if (date.accountsReceivables === undefined) {
+            return (date.accountsReceivables = "-");
           } else {
-            return date.operatingincomeloss / 1000000;
+            return date.accountsReceivables / 1000000;
           }
         })
         .slice(0, 4),
-      nonoperatingincomeexpense: data
+      inventory: data
         .map((date) => {
-          if (date.nonoperatingincomeexpense === undefined) {
-            return (date.nonoperatingincomeexpense = "-");
+          if (date.inventory === undefined) {
+            return (date.inventory = "-");
           } else {
-            return date.nonoperatingincomeexpense / 1000000;
+            return date.inventory / 1000000;
           }
         })
         .slice(0, 4),
-      incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest:
-        data
-          .map((date) => {
-            if (
-              date.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest ===
-              undefined
-            ) {
-              return (date.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest =
-                "-");
-            } else {
-              return (
-                date.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest /
-                1000000
-              );
-            }
-          })
-          .slice(0, 4),
-      othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax:
-        data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax /
-                1000000
-              );
-            }
-          })
-          .slice(0, 4),
-      earningspersharebasic: data
+      accountsPayables: data
         .map((date) => {
-          if (date.earningspersharebasic === undefined) {
-            return (date.earningspersharebasic = "-");
+          if (date.accountsPayables === undefined) {
+            return (date.accountsPayables = "-");
           } else {
-            return date.earningspersharebasic;
+            return date.accountsPayables / 1000000;
           }
         })
         .slice(0, 4),
-      incometaxexpensebenefit: data
+      otherWorkingCapital: data
         .map((date) => {
-          if (date.incometaxexpensebenefit === undefined) {
-            return (date.incometaxexpensebenefit = "-");
+          if (date.otherWorkingCapital === undefined) {
+            return (date.otherWorkingCapital = "-");
           } else {
-            return date.incometaxexpensebenefit / 1000000;
+            return date.otherWorkingCapital / 1000000;
           }
         })
         .slice(0, 4),
-      othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax:
-        data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax /
-                1000000
-              );
-            }
-          })
-          .slice(0, 4),
-      revenuefromcontractwithcustomerexcludingassessedtax: data
+      otherNonCashItems: data
         .map((date) => {
-          if (
-            date.revenuefromcontractwithcustomerexcludingassessedtax ===
-            undefined
-          ) {
-            return (date.revenuefromcontractwithcustomerexcludingassessedtax =
-              "-");
+          if (date.otherNonCashItems === undefined) {
+            return (date.otherNonCashItems = "-");
           } else {
-            return (
-              date.revenuefromcontractwithcustomerexcludingassessedtax / 1000000
-            );
+            return date.otherNonCashItems / 1000000;
           }
         })
         .slice(0, 4),
-      earningspersharediluted: data
+      netCashProvidedByOperatingActivities: data
         .map((date) => {
-          if (date.earningspersharediluted === undefined) {
-            return (date.earningspersharediluted = "-");
+          if (date.netCashProvidedByOperatingActivities === undefined) {
+            return (date.netCashProvidedByOperatingActivities = "-");
           } else {
-            return date.earningspersharediluted;
+            return date.netCashProvidedByOperatingActivities / 1000000;
           }
         })
         .slice(0, 4),
-      operatingexpenses: data
+      investmentsInPropertyPlantAndEquipment: data
         .map((date) => {
-          if (date.operatingexpenses === undefined) {
-            return (date.operatingexpenses = "-");
+          if (date.investmentsInPropertyPlantAndEquipment === undefined) {
+            return (date.investmentsInPropertyPlantAndEquipment = "-");
           } else {
-            return date.operatingexpenses / 1000000;
+            return date.investmentsInPropertyPlantAndEquipment / 1000000;
           }
         })
         .slice(0, 4),
-      othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax:
-        data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax /
-                1000000
-              );
-            }
-          })
-          .slice(0, 4),
-      sellinggeneralandadministrativeexpense: data
+      acquisitionsNet: data
         .map((date) => {
-          if (date.sellinggeneralandadministrativeexpense === undefined) {
-            return (date.sellinggeneralandadministrativeexpense = "-");
+          if (date.acquisitionsNet === undefined) {
+            return (date.acquisitionsNet = "-");
           } else {
-            return date.sellinggeneralandadministrativeexpense / 1000000;
+            return date.acquisitionsNet / 1000000;
           }
         })
         .slice(0, 4),
-      othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax:
-        data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax /
-                1000000
-              );
-            }
-          })
-          .slice(0, 4),
-      othercomprehensiveincomelossnetoftaxportionattributabletoparent: data
+      purchasesOfInvestments: data
         .map((date) => {
-          if (
-            date.othercomprehensiveincomelossnetoftaxportionattributabletoparent ===
-            undefined
-          ) {
-            return (date.othercomprehensiveincomelossnetoftaxportionattributabletoparent =
-              "-");
+          if (date.purchasesOfInvestments === undefined) {
+            return (date.purchasesOfInvestments = "-");
           } else {
-            return (
-              date.othercomprehensiveincomelossnetoftaxportionattributabletoparent /
-              1000000
-            );
+            return date.purchasesOfInvestments / 1000000;
           }
         })
         .slice(0, 4),
-      comprehensiveincomenetoftax: data
+      salesMaturitiesOfInvestments: data
         .map((date) => {
-          if (date.comprehensiveincomenetoftax === undefined) {
-            return (date.comprehensiveincomenetoftax = "-");
+          if (date.salesMaturitiesOfInvestments === undefined) {
+            return (date.salesMaturitiesOfInvestments = "-");
           } else {
-            return date.comprehensiveincomenetoftax / 1000000;
+            return date.salesMaturitiesOfInvestments / 1000000;
+          }
+        })
+        .slice(0, 4),
+      otherInvestingActivites: data
+        .map((date) => {
+          if (date.otherInvestingActivites === undefined) {
+            return (date.otherInvestingActivites = "-");
+          } else {
+            return date.otherInvestingActivites / 1000000;
+          }
+        })
+        .slice(0, 4),
+      netCashUsedForInvestingActivites: data
+        .map((date) => {
+          if (date.netCashUsedForInvestingActivites === undefined) {
+            return (date.netCashUsedForInvestingActivites = "-");
+          } else {
+            return date.netCashUsedForInvestingActivites / 1000000;
+          }
+        })
+        .slice(0, 4),
+      debtRepayment: data
+        .map((date) => {
+          if (date.debtRepayment === undefined) {
+            return (date.debtRepayment = "-");
+          } else {
+            return date.debtRepayment / 1000000;
+          }
+        })
+        .slice(0, 4),
+      commonStockIssued: data
+        .map((date) => {
+          if (date.commonStockIssued === undefined) {
+            return (date.commonStockIssued = "-");
+          } else {
+            return date.commonStockIssued / 1000000;
+          }
+        })
+        .slice(0, 4),
+      commonStockRepurchased: data
+        .map((date) => {
+          if (date.commonStockRepurchased === undefined) {
+            return (date.commonStockRepurchased = "-");
+          } else {
+            return date.commonStockRepurchased / 1000000;
+          }
+        })
+        .slice(0, 4),
+      dividendsPaid: data
+        .map((date) => {
+          if (date.dividendsPaid === undefined) {
+            return (date.dividendsPaid = "-");
+          } else {
+            return date.dividendsPaid / 1000000;
+          }
+        })
+        .slice(0, 4),
+      otherFinancingActivites: data
+        .map((date) => {
+          if (date.otherFinancingActivites === undefined) {
+            return (date.otherFinancingActivites = "-");
+          } else {
+            return date.otherFinancingActivites / 1000000;
+          }
+        })
+        .slice(0, 4),
+      netCashUsedProvidedByFinancingActivities: data
+        .map((date) => {
+          if (date.netCashUsedProvidedByFinancingActivities === undefined) {
+            return (date.netCashUsedProvidedByFinancingActivities = "-");
+          } else {
+            return date.netCashUsedProvidedByFinancingActivities / 1000000;
+          }
+        })
+        .slice(0, 4),
+      effectOfForexChangesOnCash: data
+        .map((date) => {
+          if (date.effectOfForexChangesOnCash === undefined) {
+            return (date.effectOfForexChangesOnCash = "-");
+          } else {
+            return date.effectOfForexChangesOnCash / 1000000;
+          }
+        })
+        .slice(0, 4),
+      netChangeInCash: data
+        .map((date) => {
+          if (date.netChangeInCash === undefined) {
+            return (date.netChangeInCash = "-");
+          } else {
+            return date.netChangeInCash / 1000000;
+          }
+        })
+        .slice(0, 4),
+      cashAtEndOfPeriod: data
+        .map((date) => {
+          if (date.cashAtEndOfPeriod === undefined) {
+            return (date.cashAtEndOfPeriod = "-");
+          } else {
+            return date.cashAtEndOfPeriod / 1000000;
+          }
+        })
+        .slice(0, 4),
+      cashAtBeginningOfPeriod: data
+        .map((date) => {
+          if (date.cashAtBeginningOfPeriod === undefined) {
+            return (date.cashAtBeginningOfPeriod = "-");
+          } else {
+            return date.cashAtBeginningOfPeriod / 1000000;
+          }
+        })
+        .slice(0, 4),
+      operatingCashFlow: data
+        .map((date) => {
+          if (date.operatingCashFlow === undefined) {
+            return (date.operatingCashFlow = "-");
+          } else {
+            return date.operatingCashFlow / 1000000;
+          }
+        })
+        .slice(0, 4),
+      capitalExpenditure: data
+        .map((date) => {
+          if (date.capitalExpenditure === undefined) {
+            return (date.capitalExpenditure = "-");
+          } else {
+            return date.capitalExpenditure / 1000000;
+          }
+        })
+        .slice(0, 4),
+      freeCashFlow: data
+        .map((date) => {
+          if (date.freeCashFlow === undefined) {
+            return (date.freeCashFlow = "-");
+          } else {
+            return date.freeCashFlow / 1000000;
           }
         })
         .slice(0, 4),
     });
-    console.log(dataInfo);
   }
   useEffect(() => {
-    fetchCashFlow();
+    fetchIncomeStatement();
   }, [context]);
-  console.log(
-    dataInfo.date,
-    dataInfo.othercomprehensiveincomelossnetoftaxportionattributabletoparent
-  );
-  //   const Arr = ["2020-5", "2020-6", "2020-5", "2020-5"];
   return (
     <div>
-      <h1> CashFlow Statment </h1>
+      <h1> Income Statement</h1>
       <h6> Numbers to Millions</h6>
-      <table id="simple-board">
+      <table>
         <tbody>
           <tr>
             <th>About</th>
@@ -390,197 +350,182 @@ export const CashFlow = () => {
             ))}
           </tr>
           <tr>
-            <td> Cost of goods and services sold</td>
-            {dataInfo.costofgoodsandservicessold.map((item) => (
+            <td> Net Income</td>
+            {dataInfo.netIncome.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td> Net Income Loss</td>
-            {dataInfo.netincomeloss.map((item) => (
+            <td> Depreciation and Amortization</td>
+            {dataInfo.depreciationAndAmortization.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td> Research And Development Expense</td>
-            {dataInfo.researchanddevelopmentexpense.map((item) => (
-              <td> {item === "" ? "N/A" : item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Gross Profit </td>
-            {dataInfo.grossprofit.map((item) => (
+            <td> Deferred Income Tax</td>
+            {dataInfo.deferredIncomeTax.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>
-              Other Comprehensive Income Loss Reclassification Adjustment From a
-              OCI for Sale of securities net of tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax.map(
-              (item) => (
-                <td> {item === NaN ? "" : item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Derivative Instrument Gain Loss
-              Before Reclassification After Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax.map(
-              (item) => (
-                <td> {item == NaN ? "" : item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Foreign Currency Transaction And
-              Translation Adjustment Net of Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Weighted Average Number Of Diluted Shares Outstanding</td>
-            {dataInfo.weightedaveragenumberofdilutedsharesoutstanding.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Weighted Average Number Of Shares Outstanding Basic</td>
-            {dataInfo.weightedaveragenumberofsharesoutstandingbasic.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Operating Income Loss</td>
-            {dataInfo.operatingincomeloss.map((item) => (
+            <td> Stock Based Compensation</td>
+            {dataInfo.stockBasedCompensation.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>Non-Operating Income Expense</td>
-            {dataInfo.nonoperatingincomeexpense.map((item) => (
+            <td> Change In Working Capital</td>
+            {dataInfo.changeInWorkingCapital.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>
-              Income Loss From Continuing Operations Before Income Taxes
-              Extraordinary Items Non-Controlling Interest
-            </td>
-            {dataInfo.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Available For Sale Securities
-              Adjustment Net of Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Earnings per Share Basic</td>
-            {dataInfo.earningspersharebasic.map((item) => (
+            <td> Accounts Receivables</td>
+            {dataInfo.accountsReceivables.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>Income Tax Expense Benefit</td>
-            {dataInfo.incometaxexpensebenefit.map((item) => (
+            <td> Inventory</td>
+            {dataInfo.inventory.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>
-              Other Comprehensive Income Unrealized Holding Gain Loss On
-              Securities a Rising During Period Net of Tax
-            </td>
-            {dataInfo.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Revenue From Contract With Customer Excluding Assessed Tax</td>
-            {dataInfo.revenuefromcontractwithcustomerexcludingassessedtax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Earnings per Share Diluted</td>
-            {dataInfo.earningspersharediluted.map((item) => (
+            <td> Accounts Payables</td>
+            {dataInfo.accountsPayables.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>Operating Expenses</td>
-            {dataInfo.operatingexpenses.map((item) => (
+            <td> Other Working Capital</td>
+            {dataInfo.otherWorkingCapital.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>
-              Other Comprehensive Income Loss Derivative Instrument Gain Loss
-              After Reclassification And Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Selling General And Admin Is Rative Expense</td>
-            {dataInfo.sellinggeneralandadministrativeexpense.map((item) => (
+            <td> Other Non-Cash Items</td>
+            {dataInfo.otherNonCashItems.map((item) => (
               <td>{item}</td>
             ))}
           </tr>
           <tr>
-            <td>
-              Other Comprehensive Income Loss Derivative Instrument Gain Loss
-              Reclassification After Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
+            <td> Net Cash Provided By Operating Activities</td>
+            {dataInfo.netCashProvidedByOperatingActivities.map((item) => (
+              <td>{item}</td>
+            ))}
           </tr>
           <tr>
-            <td>
-              Other Comprehensive Income Loss Net of Tax Portion Attributable to
-              Parent
-            </td>
-            {dataInfo.othercomprehensiveincomelossnetoftaxportionattributabletoparent.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
+            <td> Investments In Property Plant And Equipment</td>
+            {dataInfo.investmentsInPropertyPlantAndEquipment.map((item) => (
+              <td>{item}</td>
+            ))}
           </tr>
           <tr>
-            <td>Comprehensive Income Net of Tax</td>
-            {dataInfo.comprehensiveincomenetoftax.map((item) => (
+            <td> Acquisitions Net</td>
+            {dataInfo.acquisitionsNet.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Purchases Of Investments</td>
+            {dataInfo.purchasesOfInvestments.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Sales Maturities Of Investments</td>
+            {dataInfo.salesMaturitiesOfInvestments.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Other Investing Activites</td>
+            {dataInfo.otherInvestingActivites.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Net Cash Used For Investing Activites</td>
+            {dataInfo.netCashUsedForInvestingActivites.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Debt Repayment</td>
+            {dataInfo.debtRepayment.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Common Stock Issued</td>
+            {dataInfo.commonStockIssued.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Common Stock Repurchased</td>
+            {dataInfo.commonStockRepurchased.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Dividends Paid</td>
+            {dataInfo.dividendsPaid.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Other Financing Activites</td>
+            {dataInfo.otherFinancingActivites.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Net Cash Used Provided By Financing Activities</td>
+            {dataInfo.otherFinancingActivites.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Effect Of Forex Changes On Cash</td>
+            {dataInfo.effectOfForexChangesOnCash.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Net Change In Cash</td>
+            {dataInfo.netChangeInCash.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Cash At End Of Period</td>
+            {dataInfo.cashAtEndOfPeriod.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Cash At Beginning Of Period</td>
+            {dataInfo.cashAtBeginningOfPeriod.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Operating Cash Flow</td>
+            {dataInfo.operatingCashFlow.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Capital Expenditure</td>
+            {dataInfo.capitalExpenditure.map((item) => (
+              <td>{item}</td>
+            ))}
+          </tr>
+          <tr>
+            <td> Free Cash Flow</td>
+            {dataInfo.freeCashFlow.map((item) => (
               <td>{item}</td>
             ))}
           </tr>

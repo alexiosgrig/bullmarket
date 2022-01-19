@@ -21,7 +21,6 @@ function App() {
         <RevenueEarning></RevenueEarning>
         <Recommendation></Recommendation>
         {/* <StockScreener></StockScreener> */}
-        <BrowseBar></BrowseBar>
         {/* <NavBar></NavBar> */}
         {/* <News></News> */}
       </Context.Provider>

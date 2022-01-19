@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { financialmodelingprepApikey } from "../apikey/apikey";
 import { Context } from "../Context/Context";
+import { checkNumbers } from "./BalanceSheet";
+import { divider } from "./BalanceSheet";
 export const CashFlow = () => {
   const [context, setContext] = useContext(Context);
   const [dataInfo, setDataInfo] = useState({
@@ -44,293 +46,122 @@ export const CashFlow = () => {
     );
     const data = await res.json();
     setDataInfo({
-      date: data
-        .map((date) => {
-          if (date.date === undefined) {
-            return (date.date = "-");
-          } else {
-            return date.date;
-          }
-        })
-        .slice(0, 4),
+      date: data.map((element) => checkNumbers(element.date)).slice(0, 4),
       netIncome: data
-        .map((date) => {
-          if (date.netIncome === undefined) {
-            return (date.netIncome = "-");
-          } else {
-            return date.netIncome / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.netIncome, divider))
         .slice(0, 4),
       netincomeloss: data
-        .map((date) => {
-          if (date.netincomeloss === undefined) {
-            return (date.netincomeloss = "-");
-          } else {
-            return date.netincomeloss / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.netincomeloss, divider))
         .slice(0, 4),
       depreciationAndAmortization: data
-        .map((date) => {
-          if (date.depreciationAndAmortization === undefined) {
-            return (date.depreciationAndAmortization = "-");
-          } else {
-            return date.depreciationAndAmortization / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.depreciationAndAmortization, divider)
+        )
         .slice(0, 4),
       deferredIncomeTax: data
-        .map((date) => {
-          if (date.deferredIncomeTax === undefined) {
-            return (date.deferredIncomeTax = "-");
-          } else {
-            return date.deferredIncomeTax / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.deferredIncomeTax, divider))
         .slice(0, 4),
       stockBasedCompensation: data
-        .map((date) => {
-          if (date.stockBasedCompensation === undefined) {
-            return (date.stockBasedCompensation = "-");
-          } else {
-            return date.stockBasedCompensation / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.stockBasedCompensation, divider))
         .slice(0, 4),
       changeInWorkingCapital: data
-        .map((date) => {
-          if (date.changeInWorkingCapital === undefined) {
-            return (date.changeInWorkingCapital = "-");
-          } else {
-            return date.changeInWorkingCapital / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.changeInWorkingCapital, divider))
         .slice(0, 4),
       accountsReceivables: data
-        .map((date) => {
-          if (date.accountsReceivables === undefined) {
-            return (date.accountsReceivables = "-");
-          } else {
-            return date.accountsReceivables / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.accountsReceivables, divider))
         .slice(0, 4),
       inventory: data
-        .map((date) => {
-          if (date.inventory === undefined) {
-            return (date.inventory = "-");
-          } else {
-            return date.inventory / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.inventory, divider))
         .slice(0, 4),
       accountsPayables: data
-        .map((date) => {
-          if (date.accountsPayables === undefined) {
-            return (date.accountsPayables = "-");
-          } else {
-            return date.accountsPayables / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.accountsPayables, divider))
         .slice(0, 4),
       otherWorkingCapital: data
-        .map((date) => {
-          if (date.otherWorkingCapital === undefined) {
-            return (date.otherWorkingCapital = "-");
-          } else {
-            return date.otherWorkingCapital / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.otherWorkingCapital, divider))
         .slice(0, 4),
       otherNonCashItems: data
-        .map((date) => {
-          if (date.otherNonCashItems === undefined) {
-            return (date.otherNonCashItems = "-");
-          } else {
-            return date.otherNonCashItems / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.otherNonCashItems, divider))
         .slice(0, 4),
       netCashProvidedByOperatingActivities: data
-        .map((date) => {
-          if (date.netCashProvidedByOperatingActivities === undefined) {
-            return (date.netCashProvidedByOperatingActivities = "-");
-          } else {
-            return date.netCashProvidedByOperatingActivities / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.netCashProvidedByOperatingActivities, divider)
+        )
         .slice(0, 4),
       investmentsInPropertyPlantAndEquipment: data
-        .map((date) => {
-          if (date.investmentsInPropertyPlantAndEquipment === undefined) {
-            return (date.investmentsInPropertyPlantAndEquipment = "-");
-          } else {
-            return date.investmentsInPropertyPlantAndEquipment / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.investmentsInPropertyPlantAndEquipment, divider)
+        )
         .slice(0, 4),
       acquisitionsNet: data
-        .map((date) => {
-          if (date.acquisitionsNet === undefined) {
-            return (date.acquisitionsNet = "-");
-          } else {
-            return date.acquisitionsNet / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.acquisitionsNet, divider))
         .slice(0, 4),
       purchasesOfInvestments: data
-        .map((date) => {
-          if (date.purchasesOfInvestments === undefined) {
-            return (date.purchasesOfInvestments = "-");
-          } else {
-            return date.purchasesOfInvestments / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.purchasesOfInvestments, divider))
         .slice(0, 4),
       salesMaturitiesOfInvestments: data
-        .map((date) => {
-          if (date.salesMaturitiesOfInvestments === undefined) {
-            return (date.salesMaturitiesOfInvestments = "-");
-          } else {
-            return date.salesMaturitiesOfInvestments / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.salesMaturitiesOfInvestments, divider)
+        )
         .slice(0, 4),
       otherInvestingActivites: data
-        .map((date) => {
-          if (date.otherInvestingActivites === undefined) {
-            return (date.otherInvestingActivites = "-");
-          } else {
-            return date.otherInvestingActivites / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.otherInvestingActivites, divider)
+        )
         .slice(0, 4),
       netCashUsedForInvestingActivites: data
-        .map((date) => {
-          if (date.netCashUsedForInvestingActivites === undefined) {
-            return (date.netCashUsedForInvestingActivites = "-");
-          } else {
-            return date.netCashUsedForInvestingActivites / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.netCashUsedForInvestingActivites, divider)
+        )
         .slice(0, 4),
       debtRepayment: data
-        .map((date) => {
-          if (date.debtRepayment === undefined) {
-            return (date.debtRepayment = "-");
-          } else {
-            return date.debtRepayment / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.debtRepayment, divider))
         .slice(0, 4),
       commonStockIssued: data
-        .map((date) => {
-          if (date.commonStockIssued === undefined) {
-            return (date.commonStockIssued = "-");
-          } else {
-            return date.commonStockIssued / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.commonStockIssued, divider))
         .slice(0, 4),
       commonStockRepurchased: data
-        .map((date) => {
-          if (date.commonStockRepurchased === undefined) {
-            return (date.commonStockRepurchased = "-");
-          } else {
-            return date.commonStockRepurchased / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.commonStockRepurchased, divider))
         .slice(0, 4),
       dividendsPaid: data
-        .map((date) => {
-          if (date.dividendsPaid === undefined) {
-            return (date.dividendsPaid = "-");
-          } else {
-            return date.dividendsPaid / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.dividendsPaid, divider))
         .slice(0, 4),
       otherFinancingActivites: data
-        .map((date) => {
-          if (date.otherFinancingActivites === undefined) {
-            return (date.otherFinancingActivites = "-");
-          } else {
-            return date.otherFinancingActivites / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.otherFinancingActivites, divider)
+        )
         .slice(0, 4),
       netCashUsedProvidedByFinancingActivities: data
-        .map((date) => {
-          if (date.netCashUsedProvidedByFinancingActivities === undefined) {
-            return (date.netCashUsedProvidedByFinancingActivities = "-");
-          } else {
-            return date.netCashUsedProvidedByFinancingActivities / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(
+            element.netCashUsedProvidedByFinancingActivities,
+            divider
+          )
+        )
         .slice(0, 4),
       effectOfForexChangesOnCash: data
-        .map((date) => {
-          if (date.effectOfForexChangesOnCash === undefined) {
-            return (date.effectOfForexChangesOnCash = "-");
-          } else {
-            return date.effectOfForexChangesOnCash / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.effectOfForexChangesOnCash, divider)
+        )
         .slice(0, 4),
       netChangeInCash: data
-        .map((date) => {
-          if (date.netChangeInCash === undefined) {
-            return (date.netChangeInCash = "-");
-          } else {
-            return date.netChangeInCash / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.netChangeInCash, divider))
         .slice(0, 4),
       cashAtEndOfPeriod: data
-        .map((date) => {
-          if (date.cashAtEndOfPeriod === undefined) {
-            return (date.cashAtEndOfPeriod = "-");
-          } else {
-            return date.cashAtEndOfPeriod / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.cashAtEndOfPeriod, divider))
         .slice(0, 4),
       cashAtBeginningOfPeriod: data
-        .map((date) => {
-          if (date.cashAtBeginningOfPeriod === undefined) {
-            return (date.cashAtBeginningOfPeriod = "-");
-          } else {
-            return date.cashAtBeginningOfPeriod / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.cashAtBeginningOfPeriod, divider)
+        )
         .slice(0, 4),
       operatingCashFlow: data
-        .map((date) => {
-          if (date.operatingCashFlow === undefined) {
-            return (date.operatingCashFlow = "-");
-          } else {
-            return date.operatingCashFlow / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.operatingCashFlow, divider))
         .slice(0, 4),
       capitalExpenditure: data
-        .map((date) => {
-          if (date.capitalExpenditure === undefined) {
-            return (date.capitalExpenditure = "-");
-          } else {
-            return date.capitalExpenditure / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.capitalExpenditure, divider))
         .slice(0, 4),
       freeCashFlow: data
-        .map((date) => {
-          if (date.freeCashFlow === undefined) {
-            return (date.freeCashFlow = "-");
-          } else {
-            return date.freeCashFlow / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.freeCashFlow, divider))
         .slice(0, 4),
     });
   }

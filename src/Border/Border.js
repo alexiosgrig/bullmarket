@@ -3,3 +3,5 @@ import "../css/App.css";
 export default function Border({ children, nameClass }) {
   return <div className={nameClass}> {children}</div>;
 }
+
+// A re-usable Border Component-Container

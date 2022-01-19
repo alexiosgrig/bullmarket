@@ -1,3 +1,5 @@
+// A Component that displays News about a stock
+
 import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";

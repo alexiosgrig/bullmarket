@@ -45,11 +45,7 @@ export const Recommendation = () => {
         })
         .reverse(),
     });
-    // setDataRecommend({
-    //   buy: data
-    // })
   }
-  console.log(dataRecommend);
   useEffect(() => fetchRecommendations(), [context]);
   const options = {
     plugins: {

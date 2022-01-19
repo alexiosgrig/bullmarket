@@ -1,368 +1,206 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../Context/Context";
 import { financialmodelingprepApikey } from "../apikey/apikey";
+import { divider } from "./BalanceSheet";
+import { checkNumbers } from "./BalanceSheet";
 
 export const IncomeStatement = () => {
   const [context, setContext] = useContext(Context);
   const [dataInfo, setDataInfo] = useState({
-    date: ["", "", "", ""],
-    symbol: ["", "", "", ""],
-    period: ["", "", "", ""],
-    costofgoodsandservicessold: ["", "", "", ""],
-    netincomeloss: ["", "", "", ""],
-    researchanddevelopmentexpense: ["", "", "", ""],
-    grossprofit: ["", "", "", ""],
+    date: [],
+    costofgoodsandservicessold: [],
+    netincomeloss: [],
+    researchanddevelopmentexpense: [],
+    grossprofit: [],
     othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax:
-      ["", "", "", ""],
+      [],
     othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax:
-      ["", "", "", ""],
+      [],
     othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax:
-      ["", "", "", ""],
-    weightedaveragenumberofdilutedsharesoutstanding: ["", "", "", ""],
-    weightedaveragenumberofsharesoutstandingbasic: ["", "", "", ""],
-    operatingincomeloss: ["", "", "", ""],
-    nonoperatingincomeexpense: ["", "", "", ""],
+      [],
+    weightedaveragenumberofdilutedsharesoutstanding: [],
+    weightedaveragenumberofsharesoutstandingbasic: [],
+    operatingincomeloss: [],
+    nonoperatingincomeexpense: [],
     incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest:
-      ["", "", "", ""],
-    othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax: [
-      "",
-      "",
-      "",
-      "",
-    ],
-    earningspersharebasic: ["", "", "", ""],
-    incometaxexpensebenefit: ["", "", "", ""],
+      [],
+    othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax:
+      [],
+    earningspersharebasic: [],
+    incometaxexpensebenefit: [],
     othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax:
-      ["", "", "", ""],
-    revenuefromcontractwithcustomerexcludingassessedtax: ["", "", "", ""],
-    earningspersharediluted: ["", "", "", ""],
-    operatingexpenses: ["", "", "", ""],
+      [],
+    revenuefromcontractwithcustomerexcludingassessedtax: [],
+    earningspersharediluted: [],
+    operatingexpenses: [],
     othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax:
-      ["", "", "", ""],
-    sellinggeneralandadministrativeexpense: ["", "", "", ""],
+      [],
+    sellinggeneralandadministrativeexpense: [],
     othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax:
-      ["", "", "", ""],
-    othercomprehensiveincomelossnetoftaxportionattributabletoparent: [
-      "",
-      "",
-      "",
-      "",
-    ],
-    comprehensiveincomenetoftax: ["", "", "", ""],
+      [],
+    othercomprehensiveincomelossnetoftaxportionattributabletoparent: [],
+    comprehensiveincomenetoftax: [],
   });
+
   async function fetchCashFlow() {
     const res = await fetch(
       `https://financialmodelingprep.com/api/v3/income-statement-as-reported/${context}?limit=10&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
+    console.log(data.date);
     setDataInfo({
-      date: data
-        .map((date) => {
-          if (date.date === undefined) {
-            return (date.date = "-");
-          } else {
-            return date.date;
-          }
-        })
-        .slice(0, 4),
-      symbol: "",
-      period: "",
+      date: data.map((element) => checkNumbers(element.date)).slice(0, 4),
       costofgoodsandservicessold: data
-        .map((date) => {
-          if (date.costofgoodsandservicessold === undefined) {
-            return (date.costofgoodsandservicessold = "-");
-          } else {
-            return date.costofgoodsandservicessold / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.costofgoodsandservicessold, divider)
+        )
         .slice(0, 4),
       netincomeloss: data
-        .map((date) => {
-          if (date.netincomeloss === undefined) {
-            return (date.netincomeloss = "-");
-          } else {
-            return date.netincomeloss / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.netincomeloss, divider))
         .slice(0, 4),
       researchanddevelopmentexpense: data
-        .map((date) => {
-          if (date.researchanddevelopmentexpense === undefined) {
-            return (date.researchanddevelopmentexpenses = "-");
-          } else {
-            return date.researchanddevelopmentexpense / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.researchanddevelopmentexpense, divider)
+        )
         .slice(0, 4),
       grossprofit: data
-        .map((date) => {
-          if (date.grossprofit === undefined) {
-            return (date.grossprofit = "-");
-          } else {
-            return date.grossprofit / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.grossprofit, divider))
         .slice(0, 4),
       othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax:
         data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax /
-                1000000
-              );
-            }
-          })
+          .map((element) =>
+            checkNumbers(
+              element.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax,
+              divider
+            )
+          )
           .slice(0, 4),
       othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax:
-        data.map((date) => {
-          if (
-            date.othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax ===
-            undefined
-          ) {
-            return (date.othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax =
-              "-");
-          } else {
-            return (
-              date.othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax /
-              1000000
-            );
-          }
-        }),
+        data
+          .map((element) =>
+            checkNumbers(
+              element.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax,
+              divider
+            )
+          )
+          .slice(0, 4),
       othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax:
         data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax /
-                1000000
-              );
-            }
-          })
+          .map((element) =>
+            checkNumbers(
+              element.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax,
+              divider
+            )
+          )
           .slice(0, 4),
       weightedaveragenumberofdilutedsharesoutstanding: data
-        .map((date) => {
-          if (
-            date.weightedaveragenumberofdilutedsharesoutstanding === undefined
-          ) {
-            return (date.weightedaveragenumberofdilutedsharesoutstanding = "-");
-          } else {
-            return (
-              date.weightedaveragenumberofdilutedsharesoutstanding / 1000000
-            );
-          }
-        })
+        .map((element) =>
+          checkNumbers(
+            element.weightedaveragenumberofdilutedsharesoutstanding,
+            divider
+          )
+        )
         .slice(0, 4),
       weightedaveragenumberofsharesoutstandingbasic: data
-        .map((date) => {
-          if (
-            date.weightedaveragenumberofsharesoutstandingbasic === undefined
-          ) {
-            return (date.weightedaveragenumberofsharesoutstandingbasic = "-");
-          } else {
-            return date.weightedaveragenumberofsharesoutstandingbasic / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(
+            element.weightedaveragenumberofsharesoutstandingbasic,
+            divider
+          )
+        )
         .slice(0, 4),
       operatingincomeloss: data
-        .map((date) => {
-          if (date.operatingincomeloss === undefined) {
-            return (date.operatingincomeloss = "-");
-          } else {
-            return date.operatingincomeloss / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.operatingincomeloss, divider))
         .slice(0, 4),
       nonoperatingincomeexpense: data
-        .map((date) => {
-          if (date.nonoperatingincomeexpense === undefined) {
-            return (date.nonoperatingincomeexpense = "-");
-          } else {
-            return date.nonoperatingincomeexpense / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.nonoperatingincomeexpense, divider)
+        )
         .slice(0, 4),
       incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest:
         data
-          .map((date) => {
-            if (
-              date.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest ===
-              undefined
-            ) {
-              return (date.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest =
-                "-");
-            } else {
-              return (
-                date.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest /
-                1000000
-              );
-            }
-          })
+          .map((element) =>
+            checkNumbers(
+              element.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest,
+              divider
+            )
+          )
           .slice(0, 4),
       othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax:
         data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax /
-                1000000
-              );
-            }
-          })
+          .map((element) =>
+            checkNumbers(
+              element.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax,
+              divider
+            )
+          )
           .slice(0, 4),
       earningspersharebasic: data
-        .map((date) => {
-          if (date.earningspersharebasic === undefined) {
-            return (date.earningspersharebasic = "-");
-          } else {
-            return date.earningspersharebasic;
-          }
-        })
+        .map((element) => checkNumbers(element.earningspersharebasic))
         .slice(0, 4),
       incometaxexpensebenefit: data
-        .map((date) => {
-          if (date.incometaxexpensebenefit === undefined) {
-            return (date.incometaxexpensebenefit = "-");
-          } else {
-            return date.incometaxexpensebenefit / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.incometaxexpensebenefit, divider)
+        )
         .slice(0, 4),
       othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax:
         data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax /
-                1000000
-              );
-            }
-          })
+          .map((element) =>
+            checkNumbers(
+              element.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax,
+              divider
+            )
+          )
           .slice(0, 4),
       revenuefromcontractwithcustomerexcludingassessedtax: data
-        .map((date) => {
-          if (
-            date.revenuefromcontractwithcustomerexcludingassessedtax ===
-            undefined
-          ) {
-            return (date.revenuefromcontractwithcustomerexcludingassessedtax =
-              "-");
-          } else {
-            return (
-              date.revenuefromcontractwithcustomerexcludingassessedtax / 1000000
-            );
-          }
-        })
+        .map((element) =>
+          checkNumbers(
+            element.revenuefromcontractwithcustomerexcludingassessedtax,
+            divider
+          )
+        )
         .slice(0, 4),
       earningspersharediluted: data
-        .map((date) => {
-          if (date.earningspersharediluted === undefined) {
-            return (date.earningspersharediluted = "-");
-          } else {
-            return date.earningspersharediluted;
-          }
-        })
+        .map((element) => checkNumbers(element.earningspersharediluted))
         .slice(0, 4),
       operatingexpenses: data
-        .map((date) => {
-          if (date.operatingexpenses === undefined) {
-            return (date.operatingexpenses = "-");
-          } else {
-            return date.operatingexpenses / 1000000;
-          }
-        })
+        .map((element) => checkNumbers(element.operatingexpenses, divider))
         .slice(0, 4),
       othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax:
         data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax /
-                1000000
-              );
-            }
-          })
+          .map((element) =>
+            checkNumbers(
+              element.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax,
+              divider
+            )
+          )
           .slice(0, 4),
       sellinggeneralandadministrativeexpense: data
-        .map((date) => {
-          if (date.sellinggeneralandadministrativeexpense === undefined) {
-            return (date.sellinggeneralandadministrativeexpense = "-");
-          } else {
-            return date.sellinggeneralandadministrativeexpense / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.sellinggeneralandadministrativeexpense, divider)
+        )
         .slice(0, 4),
       othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax:
         data
-          .map((date) => {
-            if (
-              date.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax ===
-              undefined
-            ) {
-              return (date.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax =
-                "-");
-            } else {
-              return (
-                date.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax /
-                1000000
-              );
-            }
-          })
+          .map((element) =>
+            checkNumbers(
+              element.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax,
+              divider
+            )
+          )
           .slice(0, 4),
       othercomprehensiveincomelossnetoftaxportionattributabletoparent: data
-        .map((date) => {
-          if (
-            date.othercomprehensiveincomelossnetoftaxportionattributabletoparent ===
-            undefined
-          ) {
-            return (date.othercomprehensiveincomelossnetoftaxportionattributabletoparent =
-              "-");
-          } else {
-            return (
-              date.othercomprehensiveincomelossnetoftaxportionattributabletoparent /
-              1000000
-            );
-          }
-        })
+        .map((element) =>
+          checkNumbers(
+            element.othercomprehensiveincomelossnetoftaxportionattributabletoparent,
+            divider
+          )
+        )
         .slice(0, 4),
       comprehensiveincomenetoftax: data
-        .map((date) => {
-          if (date.comprehensiveincomenetoftax === undefined) {
-            return (date.comprehensiveincomenetoftax = "-");
-          } else {
-            return date.comprehensiveincomenetoftax / 1000000;
-          }
-        })
+        .map((element) =>
+          checkNumbers(element.comprehensiveincomenetoftax, divider)
+        )
         .slice(0, 4),
     });
   }

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1f5044a9a187719fa322088b5561007b",
+    "revision": "c6d7fc6d1f2f44be4d0baf80d1596ca6",
     "url": "/bullmarket/index.html"
   },
   {

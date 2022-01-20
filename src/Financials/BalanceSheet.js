@@ -71,44 +71,55 @@ export const BalanceSheet = () => {
     console.log(typeof data.date);
     // Function
     setDataInfo({
-      date: data.map((element) => checkNumbers(element.date)).slice(0, 4),
+      date: data
+        .map((element) => checkNumbers(element.date))
+        .slice(0, 4)
+        .reverse(),
       //
       liabilitiesandstockholdersequity: data
         .map((element) =>
           checkNumbers(element.liabilitiesandstockholdersequity, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
 
       //
       liabilities: data
         .map((element) => checkNumbers(element.liabilities, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       liabilitiescurrent: data
         .map((element) => checkNumbers(element.liabilitiescurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       commonstocksharesauthorized: data
         .map((element) =>
           checkNumbers(element.commonstocksharesauthorized, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       cashandcashequivalentsatcarryingvalue: data
         .map((element) =>
           checkNumbers(element.cashandcashequivalentsatcarryingvalue, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       retainedearningsaccumulateddeficit: data
         .map((element) =>
           checkNumbers(element.retainedearningsaccumulateddeficit, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       liabilitiesnoncurrent: data
         .map((element) => checkNumbers(element.liabilitiesnoncurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       propertyplantandequipmentnet: data
         .map((element) =>
           checkNumbers(element.propertyplantandequipmentnet, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       commonstocksincludingadditionalpaidincapital: data
         .map((element) =>
           checkNumbers(
@@ -116,85 +127,106 @@ export const BalanceSheet = () => {
             divider
           )
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       commercialpaper: data
         .map((element) => checkNumbers(element.commercialpaper, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       longtermdebtcurrent: data
         .map((element) => checkNumbers(element.longtermdebtcurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       commonstocksharesoutstanding: data
         .map((element) =>
           checkNumbers(element.commonstocksharesoutstanding, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherliabilitiesnoncurrent: data
         .map((element) =>
           checkNumbers(element.otherliabilitiesnoncurrent, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       marketablesecuritiescurrent: data
         .map((element) =>
           checkNumbers(element.marketablesecuritiescurrent, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherliabilitiescurrent: data
         .map((element) =>
           checkNumbers(element.otherliabilitiescurrent, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       assetscurrent: data
         .map((element) => checkNumbers(element.assetscurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       longtermdebtnoncurrent: data
         .map((element) => checkNumbers(element.longtermdebtnoncurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       contractwithcustomerliabilitycurrent: data
         .map((element) =>
           checkNumbers(element.contractwithcustomerliabilitycurrent, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       nontradereceivablescurrent: data
         .map((element) =>
           checkNumbers(element.nontradereceivablescurrent, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       commonstocksharesissued: data
         .map((element) =>
           checkNumbers(element.commonstocksharesissued, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       stockholdersequity: data
         .map((element) => checkNumbers(element.stockholdersequity, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       accountsreceivablenetcurrent: data
         .map((element) =>
           checkNumbers(element.accountsreceivablenetcurrent, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       accountspayablecurrent: data
         .map((element) => checkNumbers(element.accountspayablecurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       assets: data
         .map((element) => checkNumbers(element.assets, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       assetsnoncurrent: data
         .map((element) => checkNumbers(element.assetsnoncurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherassetscurrent: data
         .map((element) => checkNumbers(element.otherassetscurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherassetsnoncurrent: data
         .map((element) => checkNumbers(element.otherassetsnoncurrent, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       inventorynet: data
         .map((element) => checkNumbers(element.inventorynet, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       marketablesecuritiesnoncurrent: data
         .map((element) =>
           checkNumbers(element.marketablesecuritiesnoncurrent, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       accumulatedothercomprehensiveincomelossnetoftax: data
         .map((element) =>
           checkNumbers(
@@ -202,7 +234,8 @@ export const BalanceSheet = () => {
             divider
           )
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
     });
   }
   return (

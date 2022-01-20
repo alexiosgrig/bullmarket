@@ -46,90 +46,116 @@ export const CashFlow = () => {
     );
     const data = await res.json();
     setDataInfo({
-      date: data.map((element) => checkNumbers(element.date)).slice(0, 4),
+      date: data
+        .map((element) => checkNumbers(element.date))
+        .slice(0, 4)
+        .reverse(),
       netIncome: data
         .map((element) => checkNumbers(element.netIncome, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       netincomeloss: data
         .map((element) => checkNumbers(element.netincomeloss, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       depreciationAndAmortization: data
         .map((element) =>
           checkNumbers(element.depreciationAndAmortization, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       deferredIncomeTax: data
         .map((element) => checkNumbers(element.deferredIncomeTax, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       stockBasedCompensation: data
         .map((element) => checkNumbers(element.stockBasedCompensation, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       changeInWorkingCapital: data
         .map((element) => checkNumbers(element.changeInWorkingCapital, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       accountsReceivables: data
         .map((element) => checkNumbers(element.accountsReceivables, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       inventory: data
         .map((element) => checkNumbers(element.inventory, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       accountsPayables: data
         .map((element) => checkNumbers(element.accountsPayables, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherWorkingCapital: data
         .map((element) => checkNumbers(element.otherWorkingCapital, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherNonCashItems: data
         .map((element) => checkNumbers(element.otherNonCashItems, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       netCashProvidedByOperatingActivities: data
         .map((element) =>
           checkNumbers(element.netCashProvidedByOperatingActivities, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       investmentsInPropertyPlantAndEquipment: data
         .map((element) =>
           checkNumbers(element.investmentsInPropertyPlantAndEquipment, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       acquisitionsNet: data
         .map((element) => checkNumbers(element.acquisitionsNet, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       purchasesOfInvestments: data
         .map((element) => checkNumbers(element.purchasesOfInvestments, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       salesMaturitiesOfInvestments: data
         .map((element) =>
           checkNumbers(element.salesMaturitiesOfInvestments, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherInvestingActivites: data
         .map((element) =>
           checkNumbers(element.otherInvestingActivites, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       netCashUsedForInvestingActivites: data
         .map((element) =>
           checkNumbers(element.netCashUsedForInvestingActivites, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       debtRepayment: data
         .map((element) => checkNumbers(element.debtRepayment, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       commonStockIssued: data
         .map((element) => checkNumbers(element.commonStockIssued, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       commonStockRepurchased: data
         .map((element) => checkNumbers(element.commonStockRepurchased, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       dividendsPaid: data
         .map((element) => checkNumbers(element.dividendsPaid, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       otherFinancingActivites: data
         .map((element) =>
           checkNumbers(element.otherFinancingActivites, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       netCashUsedProvidedByFinancingActivities: data
         .map((element) =>
           checkNumbers(
@@ -137,32 +163,40 @@ export const CashFlow = () => {
             divider
           )
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       effectOfForexChangesOnCash: data
         .map((element) =>
           checkNumbers(element.effectOfForexChangesOnCash, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       netChangeInCash: data
         .map((element) => checkNumbers(element.netChangeInCash, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       cashAtEndOfPeriod: data
         .map((element) => checkNumbers(element.cashAtEndOfPeriod, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       cashAtBeginningOfPeriod: data
         .map((element) =>
           checkNumbers(element.cashAtBeginningOfPeriod, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       operatingCashFlow: data
         .map((element) => checkNumbers(element.operatingCashFlow, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       capitalExpenditure: data
         .map((element) => checkNumbers(element.capitalExpenditure, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       freeCashFlow: data
         .map((element) => checkNumbers(element.freeCashFlow, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
     });
   }
   useEffect(() => {

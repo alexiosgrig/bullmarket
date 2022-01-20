@@ -20,11 +20,11 @@ export const RevenueEarning = () => {
     //
     setFetchData({
       revenue: data
-        .slice(0, 5)
+        .slice(0, 4)
         .map((element) => element.revenue.toFixed(1) / 1000000)
         .reverse(),
       date: data
-        .slice(0, 5)
+        .slice(0, 4)
         .map((element) => element.date.slice(0, 4))
         .reverse(),
     });

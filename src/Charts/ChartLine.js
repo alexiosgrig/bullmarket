@@ -30,12 +30,16 @@ export default function ChartLine() {
         break;
       case "Month":
         setInfo({
-          stockPrice: HistoricalData.slice(0, 31).map((price) => {
-            return price.close;
-          }),
-          stockDate: HistoricalData.slice(0, 31).map((date) => {
-            return date.date;
-          }),
+          stockPrice: HistoricalData.slice(0, 31)
+            .reverse()
+            .map((price) => {
+              return price.close;
+            }),
+          stockDate: HistoricalData.slice(0, 31)
+            .reverse()
+            .map((date) => {
+              return date.date;
+            }),
         });
         break;
       case "Year":

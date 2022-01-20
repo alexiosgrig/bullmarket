@@ -49,23 +49,30 @@ export const IncomeStatement = () => {
     const data = await res.json();
     console.log(data.date);
     setDataInfo({
-      date: data.map((element) => checkNumbers(element.date)).slice(0, 4),
+      date: data
+        .map((element) => checkNumbers(element.date))
+        .slice(0, 4)
+        .reverse(),
       costofgoodsandservicessold: data
         .map((element) =>
           checkNumbers(element.costofgoodsandservicessold, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       netincomeloss: data
         .map((element) => checkNumbers(element.netincomeloss, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       researchanddevelopmentexpense: data
         .map((element) =>
           checkNumbers(element.researchanddevelopmentexpense, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       grossprofit: data
         .map((element) => checkNumbers(element.grossprofit, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax:
         data
           .map((element) =>
@@ -74,7 +81,8 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       othercomprehensiveincomelossderivativeinstrumentgainlossbeforereclassificationaftertax:
         data
           .map((element) =>
@@ -83,7 +91,8 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax:
         data
           .map((element) =>
@@ -92,7 +101,8 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       weightedaveragenumberofdilutedsharesoutstanding: data
         .map((element) =>
           checkNumbers(
@@ -100,7 +110,8 @@ export const IncomeStatement = () => {
             divider
           )
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       weightedaveragenumberofsharesoutstandingbasic: data
         .map((element) =>
           checkNumbers(
@@ -108,15 +119,18 @@ export const IncomeStatement = () => {
             divider
           )
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       operatingincomeloss: data
         .map((element) => checkNumbers(element.operatingincomeloss, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       nonoperatingincomeexpense: data
         .map((element) =>
           checkNumbers(element.nonoperatingincomeexpense, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest:
         data
           .map((element) =>
@@ -125,7 +139,8 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax:
         data
           .map((element) =>
@@ -134,15 +149,18 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       earningspersharebasic: data
         .map((element) => checkNumbers(element.earningspersharebasic))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       incometaxexpensebenefit: data
         .map((element) =>
           checkNumbers(element.incometaxexpensebenefit, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax:
         data
           .map((element) =>
@@ -151,7 +169,8 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       revenuefromcontractwithcustomerexcludingassessedtax: data
         .map((element) =>
           checkNumbers(
@@ -159,13 +178,16 @@ export const IncomeStatement = () => {
             divider
           )
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       earningspersharediluted: data
         .map((element) => checkNumbers(element.earningspersharediluted))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       operatingexpenses: data
         .map((element) => checkNumbers(element.operatingexpenses, divider))
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax:
         data
           .map((element) =>
@@ -174,12 +196,14 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       sellinggeneralandadministrativeexpense: data
         .map((element) =>
           checkNumbers(element.sellinggeneralandadministrativeexpense, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax:
         data
           .map((element) =>
@@ -188,7 +212,8 @@ export const IncomeStatement = () => {
               divider
             )
           )
-          .slice(0, 4),
+          .slice(0, 4)
+          .reverse(),
       othercomprehensiveincomelossnetoftaxportionattributabletoparent: data
         .map((element) =>
           checkNumbers(
@@ -196,12 +221,14 @@ export const IncomeStatement = () => {
             divider
           )
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
       comprehensiveincomenetoftax: data
         .map((element) =>
           checkNumbers(element.comprehensiveincomenetoftax, divider)
         )
-        .slice(0, 4),
+        .slice(0, 4)
+        .reverse(),
     });
   }
   useEffect(() => {

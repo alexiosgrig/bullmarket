@@ -119,7 +119,7 @@ export default function ChartLine() {
                 wheel: {
                   enabled: true, // SET SCROOL ZOOM TO TRUE
                 },
-                mode: "xy",
+                mode: "y",
                 speed: 0.2,
                 modifierKey: "shift",
               },

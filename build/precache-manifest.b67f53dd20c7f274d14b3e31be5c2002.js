@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c6d7fc6d1f2f44be4d0baf80d1596ca6",
+    "revision": "178d55e88b4e0a3c8bb35b1fbf166989",
     "url": "/bullmarket/index.html"
   },
   {
-    "revision": "0c9c2f55ac7abf2fbb47",
+    "revision": "b57265c8017f93016b7d",
     "url": "/bullmarket/static/css/main.d0268953.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bullmarket/static/js/2.16ea9971.chunk.js"
   },
   {
-    "revision": "0c9c2f55ac7abf2fbb47",
-    "url": "/bullmarket/static/js/main.b222c9a4.chunk.js"
+    "revision": "b57265c8017f93016b7d",
+    "url": "/bullmarket/static/js/main.b02cccbf.chunk.js"
   },
   {
     "revision": "80740c4cb81a1e50c65f",

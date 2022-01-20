@@ -60,6 +60,15 @@ export default function ChartLine() {
             }),
         });
         break;
+      case "Max":
+        setInfo({
+          stockPrice: HistoricalData.reverse().map((price) => {
+            return price.close;
+          }),
+          stockDate: HistoricalData.map((date) => {
+            return date.date;
+          }),
+        });
     }
     // Checks if the user select to see a Line Chart for a year/month/week and displays the asking info
     //
@@ -81,6 +90,7 @@ export default function ChartLine() {
         <option value="Week">Week</option>
         <option value="Month">Month</option>
         <option value="Year">Year</option>
+        <option value="Max">Max</option>
       </select>
       <Line // Line Chart
         data={{

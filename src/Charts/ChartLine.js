@@ -20,12 +20,16 @@ export default function ChartLine() {
     switch (date) {
       case "Week":
         setInfo({
-          stockPrice: HistoricalData.slice(0, 8).map((price) => {
-            return price.close;
-          }),
-          stockDate: HistoricalData.slice(0, 8).map((date) => {
-            return date.date;
-          }),
+          stockPrice: HistoricalData.slice(0, 8)
+            .reverse()
+            .map((price) => {
+              return price.close;
+            }),
+          stockDate: HistoricalData.slice(0, 8)
+            .reverse()
+            .map((date) => {
+              return date.date;
+            }),
         });
         break;
       case "Month":

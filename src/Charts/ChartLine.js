@@ -3,9 +3,16 @@ import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { Context } from "../Context/Context";
 import { financialmodelingprepApikey } from "../apikey/apikey";
+import * as zoom from "chartjs-plugin-zoom";
+import zoomPlugin from "chartjs-plugin-zoom";
+import hammer from "hammerjs";
+
+Chart.register(zoomPlugin);
+// import { zoom } from "chartjs-plugin-zoom";
 // Importing Hooks, Context, API key, and Chart
 //
 //
+
 export default function ChartLine() {
   const [context, setContext] = useContext(Context);
   const [info, setInfo] = useState({});
@@ -104,6 +111,29 @@ export default function ChartLine() {
               tension: 0.1,
             },
           ],
+        }}
+        options={{
+          plugins: {
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true, // SET SCROOL ZOOM TO TRUE
+                },
+                mode: "xy",
+                speed: 0.2,
+                modifierKey: "shift",
+              },
+              pan: {
+                enabled: true,
+                mode: "xy",
+                threshold: 1,
+              },
+              pinch: {
+                enabled: true,
+              },
+              mode: "xy",
+            },
+          },
         }}
       ></Line>
     </div>

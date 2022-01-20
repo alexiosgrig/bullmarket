@@ -17,7 +17,6 @@ export const checkNumbers = (attribute, constant) => {
     return attribute;
   }
 };
-console.log(checkNumbers(10000000000000, divider));
 export const BalanceSheet = () => {
   const [context, setContext] = useContext(Context);
   const [dataInfo, setDataInfo] = useState({

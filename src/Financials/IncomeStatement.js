@@ -47,7 +47,6 @@ export const IncomeStatement = () => {
       `https://financialmodelingprep.com/api/v3/income-statement-as-reported/${context}?limit=10&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
-    console.log(data.date);
     setDataInfo({
       date: data
         .map((element) => checkNumbers(element.date))
@@ -234,10 +233,6 @@ export const IncomeStatement = () => {
   useEffect(() => {
     fetchCashFlow();
   }, [context]);
-  console.log(
-    dataInfo.date,
-    dataInfo.othercomprehensiveincomelossnetoftaxportionattributabletoparent
-  );
   return (
     <div>
       <h1> Income Statement </h1>

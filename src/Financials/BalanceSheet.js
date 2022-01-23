@@ -7,9 +7,8 @@ import { Context } from "../Context/Context";
 export const divider = 1000000;
 export const checkNumbers = (attribute, constant) => {
   if (attribute === undefined) {
-    console.log(attribute);
     return (attribute = "-");
-  } else if (attribute === NaN) {
+  } else if (attribute === !Number) {
     return attribute;
   } else if (constant) {
     return attribute / constant;
@@ -18,7 +17,7 @@ export const checkNumbers = (attribute, constant) => {
   }
 };
 export const BalanceSheet = () => {
-  const [context, setContext] = useContext(Context);
+  const [context] = useContext(Context);
   const [dataInfo, setDataInfo] = useState({
     date: [],
     liabilitiesandstockholdersequity: [],
@@ -54,11 +53,7 @@ export const BalanceSheet = () => {
   });
   //Initialize some data that we will need to add when we fetch the API
   //
-  useEffect(() => {
-    fetchBalanceSheet();
-  }, [context]);
-  // Fetch when context changes
-  //
+
   async function fetchBalanceSheet() {
     const res = await fetch(
       `https://financialmodelingprep.com/api/v3/balance-sheet-statement-as-reported/${context}?limit=10&apikey=${financialmodelingprepApikey}`
@@ -237,6 +232,9 @@ export const BalanceSheet = () => {
         .reverse(),
     });
   }
+  useEffect(() => {
+    fetchBalanceSheet();
+  }, [context]);
   return (
     <div>
       <h1> Balance Sheet</h1>

@@ -6,6 +6,7 @@ import { financialmodelingprepApikey } from "../apikey/apikey";
 import * as zoom from "chartjs-plugin-zoom";
 import zoomPlugin from "chartjs-plugin-zoom";
 import hammer from "hammerjs";
+import { BasicInfo } from "../Financials/BasicInfo";
 
 Chart.register(zoomPlugin);
 // import { zoom } from "chartjs-plugin-zoom";
@@ -92,50 +93,58 @@ export default function ChartLine() {
   // handleChange function sets the date according to what the user selects
   return (
     //selection field
-    <div className="ChartLine">
-      <select id="cars" name="cars" onChange={handleChange}>
+    <div>
+      <select
+        id="cars"
+        name="cars"
+        onChange={handleChange}
+        style={{ marginLeft: "100px" }}
+      >
         <option value="Week">Week</option>
         <option value="Month">Month</option>
         <option value="Year">Year</option>
         <option value="Max">Max</option>
       </select>
-      <Line // Line Chart
-        data={{
-          labels: info.stockDate,
-          datasets: [
-            {
-              label: `${context} Price:`, // Displays the the value the user Typed
-              data: info.stockPrice, // Displays the stock price's
-              fill: true,
-              borderColor: "rgb(75,192,192)",
-              tension: 0.1,
-            },
-          ],
-        }}
-        options={{
-          plugins: {
-            zoom: {
+      <div className="ChartLine">
+        <Line // Line Chart
+          data={{
+            labels: info.stockDate,
+            datasets: [
+              {
+                label: `${context} Price:`, // Displays the the value the user Typed
+                data: info.stockPrice, // Displays the stock price's
+                fill: true,
+                borderColor: "rgb(75,192,192)",
+                tension: 0.1,
+              },
+            ],
+          }}
+          options={{
+            plugins: {
               zoom: {
-                wheel: {
-                  enabled: true, // SET SCROOL ZOOM TO TRUE
+                zoom: {
+                  wheel: {
+                    enabled: true, // SET SCROOL ZOOM TO TRUE
+                  },
+                  mode: "y",
+                  speed: 0.2,
+                  modifierKey: "shift",
                 },
-                mode: "y",
-                speed: 0.2,
-                modifierKey: "shift",
-              },
-              pan: {
-                enabled: true,
+                pan: {
+                  enabled: true,
+                  mode: "xy",
+                  threshold: 1,
+                },
+                pinch: {
+                  enabled: true,
+                },
                 mode: "xy",
-                threshold: 1,
               },
-              pinch: {
-                enabled: true,
-              },
-              mode: "xy",
             },
-          },
-        }}
-      ></Line>
+          }}
+        ></Line>
+        <BasicInfo></BasicInfo>
+      </div>
     </div>
   );
 }

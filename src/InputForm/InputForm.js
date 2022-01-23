@@ -1,14 +1,14 @@
 import Border from "../Border/Border";
 import React, { useContext } from "react";
 import "../css/App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Context } from "../Context/Context";
 //importing Hooks and Components
 //
 //
 export default function InputForm() {
   const [value, setValue] = useState(""); //Initiaze State
-  const [context, setContext] = useContext(Context);
+  const [setContext] = useContext(Context);
   const getValue = (e) => {
     setValue(e.target.value.toUpperCase());
   };

@@ -5,7 +5,7 @@ import { Context } from "../Context/Context";
 import { finnhubApikey } from "../apikey/apikey";
 
 export const Recommendation = () => {
-  const [context, setContext] = useContext(Context);
+  const [context] = useContext(Context);
   const [dataRecommend, setDataRecommend] = useState({
     buy: "",
     hold: "",

@@ -147,160 +147,168 @@ export const Ratio = () => {
 
   return (
     <>
-      <div className="RatioTable">
-        <table>
-          <tbody>
-            <tr>
-              <th>Ratios</th>
-            </tr>
-            <tr>
-              <td>Dividend Yield : {ratio.dividendYielTTM}</td>
-              <td>
-                Dividend Yield Percentage :
-                {ratio.dividendYielPercentageTTM + "%"}
-              </td>
-              <td>Dividend Yield : P/E Ratio: {ratio.peRatioTTM}</td>
-              <td>Dividend Yield : PEG Ratio: {ratio.pegRatioTTM}</td>
-              <td>Dividend Yield : PEG Ratio: {ratio.pegRatioTTM}</td>
-            </tr>
-            <tr>
-              <td>Payout Ratio: {ratio.payoutRatioTTM}</td>
-              <td>Current Ratio {ratio.currentRatioTTM}</td>
-              <td>Quick Ratio: {ratio.quickRatioTTM}</td>
-              <td>
-                Days of Sales Outstanding: {ratio.daysOfSalesOutstandingTTM}
-              </td>
-              <td>
-                Days of Sales Outstanding: {ratio.daysOfSalesOutstandingTTM}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Days of Sales Outstanding: {ratio.daysOfSalesOutstandingTTM}
-              </td>
-              <td>Cash Ratio: {ratio.cashRatioTTM}</td>
-              <td>
-                Days of inventory Outstanding:
-                {ratio.daysOfInventoryOutstandingTTM}
-              </td>
-              <td>Operating Cycle: {ratio.operatingCycleTTM}</td>
-              <td>
-                Days of Payable Outstanding {ratio.daysOfPayablesOutstandingTTM}
-              </td>
-            </tr>
-            <tr>
-              <td>Cash conversion cycle {ratio.cashConversionCycleTTM}</td>
-              <td>Gross profit margin: {ratio.grossProfitMarginTTM}</td>
-              <td>Operating profit margin: {ratio.operatingProfitMarginTTM}</td>
-              <td>Pre tax profit margin: {ratio.pretaxProfitMarginTTM}</td>
-              <td>Net profit margin: {ratio.netProfitMarginTTM}</td>
-            </tr>
-            <tr>
-              <td>Effective tax rate: {ratio.effectiveTaxRateTTM}</td>
-              <td>Return on assets: {ratio.returnOnAssetsTTM}</td>
-              <td>Return on equity {ratio.returnOnEquityTTM}</td>
-              <td>
-                Return on capital employed: {ratio.returnOnCapitalEmployedTTM}
-              </td>
-              <td>Net income per EBT: {ratio.netIncomePerEBTTTM}</td>
-            </tr>
-            <tr>
-              <td>EBT per EBIT: {ratio.ebtPerEbitTTM}</td>
-              <td>EBIT per Revenue: {ratio.ebitPerRevenueTTM}</td>
-              <td>Debt ratio: {ratio.debtRatioTTM}</td>
-              <td>Debt equity ratio: {ratio.debtEquityRatioTTM}</td>
-              <td>
-                Total debt to capitalization:
-                {ratio.totalDebtToCapitalizationTTM}
-              </td>
-            </tr>
-            <tr>
-              <td>Interest Coverage: {ratio.interestCoverageTTM}</td>
-              <td>Cashflow to debt ratio: {ratio.cashFlowToDebtRatioTTM}</td>
-              <td>
-                Company equity mutliplier: {ratio.companyEquityMultiplierTTM}
-              </td>
-              <td>Receibables turnover: {ratio.receivablesTurnoverTTM}</td>
-              <td>Payables turnover: {ratio.payablesTurnoverTTM}</td>
-            </tr>
-            <tr>
-              <td>Invetory turnover: {ratio.inventoryTurnoverTTM}</td>
-              <td>Fixed assets turnover {ratio.fixedAssetTurnoverTTM}</td>
-              <td>Assets turnover {ratio.assetTurnoverTTM}</td>
-              <td>
-                Operating cash flow per share
-                {ratio.operatingCashFlowPerShareTTM}
-              </td>
-              <td>
-                Free cashflow operating cashflow ratio:
-                {ratio.freeCashFlowOperatingCashFlowRatioTTM}
-              </td>
-            </tr>
-            <tr>
-              <td>Cash per share: {ratio.cashPerShareTTM}</td>
-              <td>
-                Operating cash flow sales ratio:
-                {ratio.operatingCashFlowSalesRatioTTM}
-              </td>
-              <td>Free cashflow per share: {ratio.freeCashFlowPerShareTTM}</td>
-              <td>
-                Operating cashflow sales ratio:
-                {ratio.operatingCashFlowSalesRatioTTM}
-              </td>
-              <td>
-                Free cashflow operating cash flow ratio:
-                {ratio.freeCashFlowOperatingCashFlowRatioTTM}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Cash flow coverage ratios: {ratio.cashFlowCoverageRatiosTTM}
-              </td>
-              <td>
-                Short term coverage ratios: {ratio.shortTermCoverageRatiosTTM}
-              </td>
-              <td>
-                Capital expenditure coverage ratio:
-                {ratio.capitalExpenditureCoverageRatioTTM}
-              </td>
-              <td>
-                Dividend paid and capex coverage ratio:
-                {ratio.dividendPaidAndCapexCoverageRatioTTM}
-              </td>
-              <td>Price book value ratio: {ratio.priceBookValueRatioTTM}</td>
-            </tr>
-            <tr>
-              <td>Price to book ratio: {ratio.priceToBookRatioTTM}</td>
-              <td>Price to sales ratio: {ratio.priceToSalesRatioTTM}</td>
-              <td>Price earnings ratio: {ratio.priceEarningsRatioTTM}</td>
-              <td>
-                Price to free cashflow ratio:
-                {ratio.priceToFreeCashFlowsRatioTTM}
-              </td>
-              <td>
-                Price to operating cashflows ratio:
-                {ratio.priceToOperatingCashFlowsRatioTTM}
-              </td>
-            </tr>
-            <tr>
-              <td>Price cashflow ratio: {ratio.priceCashFlowRatioTTM}</td>
-              <td>
-                Price earings to growth ratio:{" "}
-                {ratio.priceEarningsToGrowthRatioTTM}{" "}
-              </td>
-              <td>Price sales ratio: {ratio.priceSalesRatioTTM}</td>
-              <td>Dividend yield: {ratio.dividendYieldTTM}</td>
-              <td>
-                Enterprise value mutliplier: {ratio.enterpriseValueMultipleTTM}
-              </td>
-            </tr>
-            <tr>
-              <td>Price fair value: {ratio.priceFairValueTTM}</td>
-              <td>Dividend per share: {ratio.dividendPerShareTTM}</td>
-              <td>Dividend yield: {ratio.dividendYieldTTM}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div style={{ backgroundColor: "#f5f5f5", height: "auto" }}>
+        <div className="RatioTable">
+          <table>
+            <tbody>
+              <tr>
+                <th>Ratios</th>
+              </tr>
+              <tr>
+                <td>Dividend Yield : {ratio.dividendYielTTM}</td>
+                <td>
+                  Dividend Yield Percentage :
+                  {ratio.dividendYielPercentageTTM + "%"}
+                </td>
+                <td>Dividend Yield : P/E Ratio: {ratio.peRatioTTM}</td>
+                <td>Dividend Yield : PEG Ratio: {ratio.pegRatioTTM}</td>
+                <td>Dividend Yield : PEG Ratio: {ratio.pegRatioTTM}</td>
+              </tr>
+              <tr>
+                <td>Payout Ratio: {ratio.payoutRatioTTM}</td>
+                <td>Current Ratio {ratio.currentRatioTTM}</td>
+                <td>Quick Ratio: {ratio.quickRatioTTM}</td>
+                <td>
+                  Days of Sales Outstanding: {ratio.daysOfSalesOutstandingTTM}
+                </td>
+                <td>
+                  Days of Sales Outstanding: {ratio.daysOfSalesOutstandingTTM}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Days of Sales Outstanding: {ratio.daysOfSalesOutstandingTTM}
+                </td>
+                <td>Cash Ratio: {ratio.cashRatioTTM}</td>
+                <td>
+                  Days of inventory Outstanding:
+                  {ratio.daysOfInventoryOutstandingTTM}
+                </td>
+                <td>Operating Cycle: {ratio.operatingCycleTTM}</td>
+                <td>
+                  Days of Payable Outstanding{" "}
+                  {ratio.daysOfPayablesOutstandingTTM}
+                </td>
+              </tr>
+              <tr>
+                <td>Cash conversion cycle {ratio.cashConversionCycleTTM}</td>
+                <td>Gross profit margin: {ratio.grossProfitMarginTTM}</td>
+                <td>
+                  Operating profit margin: {ratio.operatingProfitMarginTTM}
+                </td>
+                <td>Pre tax profit margin: {ratio.pretaxProfitMarginTTM}</td>
+                <td>Net profit margin: {ratio.netProfitMarginTTM}</td>
+              </tr>
+              <tr>
+                <td>Effective tax rate: {ratio.effectiveTaxRateTTM}</td>
+                <td>Return on assets: {ratio.returnOnAssetsTTM}</td>
+                <td>Return on equity {ratio.returnOnEquityTTM}</td>
+                <td>
+                  Return on capital employed: {ratio.returnOnCapitalEmployedTTM}
+                </td>
+                <td>Net income per EBT: {ratio.netIncomePerEBTTTM}</td>
+              </tr>
+              <tr>
+                <td>EBT per EBIT: {ratio.ebtPerEbitTTM}</td>
+                <td>EBIT per Revenue: {ratio.ebitPerRevenueTTM}</td>
+                <td>Debt ratio: {ratio.debtRatioTTM}</td>
+                <td>Debt equity ratio: {ratio.debtEquityRatioTTM}</td>
+                <td>
+                  Total debt to capitalization:
+                  {ratio.totalDebtToCapitalizationTTM}
+                </td>
+              </tr>
+              <tr>
+                <td>Interest Coverage: {ratio.interestCoverageTTM}</td>
+                <td>Cashflow to debt ratio: {ratio.cashFlowToDebtRatioTTM}</td>
+                <td>
+                  Company equity mutliplier: {ratio.companyEquityMultiplierTTM}
+                </td>
+                <td>Receibables turnover: {ratio.receivablesTurnoverTTM}</td>
+                <td>Payables turnover: {ratio.payablesTurnoverTTM}</td>
+              </tr>
+              <tr>
+                <td>Invetory turnover: {ratio.inventoryTurnoverTTM}</td>
+                <td>Fixed assets turnover {ratio.fixedAssetTurnoverTTM}</td>
+                <td>Assets turnover {ratio.assetTurnoverTTM}</td>
+                <td>
+                  Operating cash flow per share
+                  {ratio.operatingCashFlowPerShareTTM}
+                </td>
+                <td>
+                  Free cashflow operating cashflow ratio:
+                  {ratio.freeCashFlowOperatingCashFlowRatioTTM}
+                </td>
+              </tr>
+              <tr>
+                <td>Cash per share: {ratio.cashPerShareTTM}</td>
+                <td>
+                  Operating cash flow sales ratio:
+                  {ratio.operatingCashFlowSalesRatioTTM}
+                </td>
+                <td>
+                  Free cashflow per share: {ratio.freeCashFlowPerShareTTM}
+                </td>
+                <td>
+                  Operating cashflow sales ratio:
+                  {ratio.operatingCashFlowSalesRatioTTM}
+                </td>
+                <td>
+                  Free cashflow operating cash flow ratio:
+                  {ratio.freeCashFlowOperatingCashFlowRatioTTM}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Cash flow coverage ratios: {ratio.cashFlowCoverageRatiosTTM}
+                </td>
+                <td>
+                  Short term coverage ratios: {ratio.shortTermCoverageRatiosTTM}
+                </td>
+                <td>
+                  Capital expenditure coverage ratio:
+                  {ratio.capitalExpenditureCoverageRatioTTM}
+                </td>
+                <td>
+                  Dividend paid and capex coverage ratio:
+                  {ratio.dividendPaidAndCapexCoverageRatioTTM}
+                </td>
+                <td>Price book value ratio: {ratio.priceBookValueRatioTTM}</td>
+              </tr>
+              <tr>
+                <td>Price to book ratio: {ratio.priceToBookRatioTTM}</td>
+                <td>Price to sales ratio: {ratio.priceToSalesRatioTTM}</td>
+                <td>Price earnings ratio: {ratio.priceEarningsRatioTTM}</td>
+                <td>
+                  Price to free cashflow ratio:
+                  {ratio.priceToFreeCashFlowsRatioTTM}
+                </td>
+                <td>
+                  Price to operating cashflows ratio:
+                  {ratio.priceToOperatingCashFlowsRatioTTM}
+                </td>
+              </tr>
+              <tr>
+                <td>Price cashflow ratio: {ratio.priceCashFlowRatioTTM}</td>
+                <td>
+                  Price earings to growth ratio:{" "}
+                  {ratio.priceEarningsToGrowthRatioTTM}{" "}
+                </td>
+                <td>Price sales ratio: {ratio.priceSalesRatioTTM}</td>
+                <td>Dividend yield: {ratio.dividendYieldTTM}</td>
+                <td>
+                  Enterprise value mutliplier:{" "}
+                  {ratio.enterpriseValueMultipleTTM}
+                </td>
+              </tr>
+              <tr>
+                <td>Price fair value: {ratio.priceFairValueTTM}</td>
+                <td>Dividend per share: {ratio.dividendPerShareTTM}</td>
+                <td>Dividend yield: {ratio.dividendYieldTTM}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

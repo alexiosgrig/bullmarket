@@ -202,8 +202,8 @@ img:hover {
   line-height: 50px;
 }
 .RatioTable {
-  margin-top: 100px;
+  margin-top: 1px;
   margin-left: 20%;
   width: 50%;
-  height: 1000px;
+  height: auto;
 }

@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/bullmarket/static/css/main.d686e45d.chunk.css",
-    "main.js": "/bullmarket/static/js/main.d90c9406.chunk.js",
-    "main.js.map": "/bullmarket/static/js/main.d90c9406.chunk.js.map",
+    "main.css": "/bullmarket/static/css/main.60c413e9.chunk.css",
+    "main.js": "/bullmarket/static/js/main.794d360c.chunk.js",
+    "main.js.map": "/bullmarket/static/js/main.794d360c.chunk.js.map",
     "runtime~main.js": "/bullmarket/static/js/runtime~main.501194e9.js",
     "runtime~main.js.map": "/bullmarket/static/js/runtime~main.501194e9.js.map",
     "static/css/2.124766c4.chunk.css": "/bullmarket/static/css/2.124766c4.chunk.css",
     "static/js/2.f6961b2a.chunk.js": "/bullmarket/static/js/2.f6961b2a.chunk.js",
     "static/js/2.f6961b2a.chunk.js.map": "/bullmarket/static/js/2.f6961b2a.chunk.js.map",
     "index.html": "/bullmarket/index.html",
-    "precache-manifest.71b7268f3071f815e901b626e8d54926.js": "/bullmarket/precache-manifest.71b7268f3071f815e901b626e8d54926.js",
+    "precache-manifest.7f21aa93120405b23458086c9725348a.js": "/bullmarket/precache-manifest.7f21aa93120405b23458086c9725348a.js",
     "service-worker.js": "/bullmarket/service-worker.js",
     "static/css/2.124766c4.chunk.css.map": "/bullmarket/static/css/2.124766c4.chunk.css.map",
-    "static/css/main.d686e45d.chunk.css.map": "/bullmarket/static/css/main.d686e45d.chunk.css.map",
+    "static/css/main.60c413e9.chunk.css.map": "/bullmarket/static/css/main.60c413e9.chunk.css.map",
     "static/media/font-awesome.min.css": "/bullmarket/static/media/fontawesome-webfont.fee66e71.woff"
   }
 }

@@ -3,8 +3,11 @@ import { financialmodelingprepApikey } from "../apikey/apikey";
 import { Context } from "../Context/Context";
 import { checkNumbers } from "./BalanceSheet";
 import { divider } from "./BalanceSheet";
+import ClipLoader from "react-spinners/ClipLoader";
+
 export const CashFlow = () => {
   const [context, setContext] = useContext(Context);
+  const [spinner, setSpinner] = useState(true);
   const [dataInfo, setDataInfo] = useState({
     date: [],
     netIncome: [],
@@ -45,6 +48,7 @@ export const CashFlow = () => {
       `https://financialmodelingprep.com/api/v3/cash-flow-statement/${context}?limit=120&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
+    setSpinner(false);
     setDataInfo({
       date: data
         .map((element) => checkNumbers(element.date))
@@ -203,199 +207,205 @@ export const CashFlow = () => {
     fetchIncomeStatement();
   }, [context]);
   return (
-    <div>
-      <h1> Cash Flow</h1>
-      <h6> Numbers to Millions</h6>
-      <table>
-        <tbody>
-          <tr>
-            <th>About</th>
-            {dataInfo.date.map((item) => (
-              <th key={item}>{item}</th>
-            ))}
-          </tr>
-          <tr>
-            <td> Net Income</td>
-            {dataInfo.netIncome.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Depreciation and Amortization</td>
-            {dataInfo.depreciationAndAmortization.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Deferred Income Tax</td>
-            {dataInfo.deferredIncomeTax.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Stock Based Compensation</td>
-            {dataInfo.stockBasedCompensation.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Change In Working Capital</td>
-            {dataInfo.changeInWorkingCapital.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Accounts Receivables</td>
-            {dataInfo.accountsReceivables.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Inventory</td>
-            {dataInfo.inventory.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Accounts Payables</td>
-            {dataInfo.accountsPayables.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Other Working Capital</td>
-            {dataInfo.otherWorkingCapital.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Other Non-Cash Items</td>
-            {dataInfo.otherNonCashItems.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Net Cash Provided By Operating Activities</td>
-            {dataInfo.netCashProvidedByOperatingActivities.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Investments In Property Plant And Equipment</td>
-            {dataInfo.investmentsInPropertyPlantAndEquipment.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Acquisitions Net</td>
-            {dataInfo.acquisitionsNet.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Purchases Of Investments</td>
-            {dataInfo.purchasesOfInvestments.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Sales Maturities Of Investments</td>
-            {dataInfo.salesMaturitiesOfInvestments.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Other Investing Activites</td>
-            {dataInfo.otherInvestingActivites.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Net Cash Used For Investing Activites</td>
-            {dataInfo.netCashUsedForInvestingActivites.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Debt Repayment</td>
-            {dataInfo.debtRepayment.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Common Stock Issued</td>
-            {dataInfo.commonStockIssued.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Common Stock Repurchased</td>
-            {dataInfo.commonStockRepurchased.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Dividends Paid</td>
-            {dataInfo.dividendsPaid.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Other Financing Activites</td>
-            {dataInfo.otherFinancingActivites.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Net Cash Used Provided By Financing Activities</td>
-            {dataInfo.otherFinancingActivites.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Effect Of Forex Changes On Cash</td>
-            {dataInfo.effectOfForexChangesOnCash.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Net Change In Cash</td>
-            {dataInfo.netChangeInCash.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Cash At End Of Period</td>
-            {dataInfo.cashAtEndOfPeriod.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Cash At Beginning Of Period</td>
-            {dataInfo.cashAtBeginningOfPeriod.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Operating Cash Flow</td>
-            {dataInfo.operatingCashFlow.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Capital Expenditure</td>
-            {dataInfo.capitalExpenditure.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Free Cash Flow</td>
-            {dataInfo.freeCashFlow.map((item) => (
-              <td key={item}>{item}</td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+    <div className="Financial">
+      {spinner ? (
+        <ClipLoader />
+      ) : (
+        <div>
+          <h1> Cash Flow</h1>
+          <h6> Numbers to Millions</h6>
+          <table>
+            <tbody>
+              <tr>
+                <th>About</th>
+                {dataInfo.date.map((item) => (
+                  <th key={item}>{item}</th>
+                ))}
+              </tr>
+              <tr>
+                <td> Net Income</td>
+                {dataInfo.netIncome.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Depreciation and Amortization</td>
+                {dataInfo.depreciationAndAmortization.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Deferred Income Tax</td>
+                {dataInfo.deferredIncomeTax.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Stock Based Compensation</td>
+                {dataInfo.stockBasedCompensation.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Change In Working Capital</td>
+                {dataInfo.changeInWorkingCapital.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Accounts Receivables</td>
+                {dataInfo.accountsReceivables.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Inventory</td>
+                {dataInfo.inventory.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Accounts Payables</td>
+                {dataInfo.accountsPayables.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Other Working Capital</td>
+                {dataInfo.otherWorkingCapital.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Other Non-Cash Items</td>
+                {dataInfo.otherNonCashItems.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Net Cash Provided By Operating Activities</td>
+                {dataInfo.netCashProvidedByOperatingActivities.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Investments In Property Plant And Equipment</td>
+                {dataInfo.investmentsInPropertyPlantAndEquipment.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Acquisitions Net</td>
+                {dataInfo.acquisitionsNet.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Purchases Of Investments</td>
+                {dataInfo.purchasesOfInvestments.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Sales Maturities Of Investments</td>
+                {dataInfo.salesMaturitiesOfInvestments.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Other Investing Activites</td>
+                {dataInfo.otherInvestingActivites.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Net Cash Used For Investing Activites</td>
+                {dataInfo.netCashUsedForInvestingActivites.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Debt Repayment</td>
+                {dataInfo.debtRepayment.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Common Stock Issued</td>
+                {dataInfo.commonStockIssued.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Common Stock Repurchased</td>
+                {dataInfo.commonStockRepurchased.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Dividends Paid</td>
+                {dataInfo.dividendsPaid.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Other Financing Activites</td>
+                {dataInfo.otherFinancingActivites.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Net Cash Used Provided By Financing Activities</td>
+                {dataInfo.otherFinancingActivites.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Effect Of Forex Changes On Cash</td>
+                {dataInfo.effectOfForexChangesOnCash.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Net Change In Cash</td>
+                {dataInfo.netChangeInCash.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Cash At End Of Period</td>
+                {dataInfo.cashAtEndOfPeriod.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Cash At Beginning Of Period</td>
+                {dataInfo.cashAtBeginningOfPeriod.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Operating Cash Flow</td>
+                {dataInfo.operatingCashFlow.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Capital Expenditure</td>
+                {dataInfo.capitalExpenditure.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Free Cash Flow</td>
+                {dataInfo.freeCashFlow.map((item) => (
+                  <td key={item}>{item}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

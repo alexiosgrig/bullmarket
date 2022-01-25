@@ -3,6 +3,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { finnhubApikey } from "../apikey/apikey";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function News(props) {
   const [news, setNews] = useState({
@@ -13,11 +14,13 @@ export default function News(props) {
     summary: "",
     url: "",
   });
+  const [spinner, setSpinner] = useState(true);
   async function fetchNews() {
     const res = await fetch(
       `https://finnhub.io/api/v1/news?category=general&token=${finnhubApikey}`
     );
     const data = await res.json();
+    setSpinner(false);
     let news1, news2, news3, news4;
     [news1, news2, news3, news4] = [data[0], data[1], data[2], data[3]];
 
@@ -63,50 +66,62 @@ export default function News(props) {
   useEffect(() => {
     fetchNews();
   }, []);
+
   return (
     <>
-      <div style={{ marginTop: "50px" }}>
-        {" "}
-        {news.headline.news1}
-        <div> {news.source.news1}</div>
-      </div>
-      <div className="News">
-        <div className="NewsBorder">
-          <img src={news.image.news1} width="500" height="366" />
-        </div>
+      <div className="Financial">
+        {spinner ? (
+          <ClipLoader />
+        ) : (
+          <div>
+            <div style={{ marginTop: "50px", marginLeft: "100px" }}>
+              {" "}
+              {news.headline.news1}
+              <div> {news.source.news1}</div>
+              <div style={{ marginTop: "10px", color: "gray" }}>
+                {news.source.news1}
+              </div>
+            </div>
+            <div className="News">
+              <div className="NewsBorder">
+                <img src={news.image.news1} width="500" height="366" />
+              </div>
 
-        <div className="NewsBorderSide">
-          <img src={news.image.news2} width="100" height="100"></img>
-          <div style={{ textAlign: "center" }}>
-            {news.headline.news2 + " "}{" "}
-            <div style={{ marginTop: "10px", color: "gray" }}>
-              {" "}
-              {news.source.news2}
+              <div className="NewsBorderSide">
+                <img src={news.image.news2} width="100" height="100"></img>
+                <div style={{ textAlign: "center" }}>
+                  {news.headline.news2 + " "}{" "}
+                  <div style={{ marginTop: "10px", color: "gray" }}>
+                    {" "}
+                    {news.source.news2}
+                  </div>
+                </div>
+                <img src={news.image.news3} width="100" height="100"></img>
+                <div style={{ textAlign: "center" }}>
+                  {" "}
+                  {news.headline.news2}
+                  <div style={{ marginTop: "10px", color: "gray" }}>
+                    {" "}
+                    {news.source.news3}
+                  </div>
+                </div>
+                <img
+                  src={news.image.news4 + " "}
+                  width="100"
+                  height="100"
+                  style={{ marginTop: "100x", color: "gray" }}
+                ></img>
+                <div style={{ textAlign: "center" }}>
+                  {news.headline.news4 + " "}
+                  <div style={{ marginTop: "10px", color: "gray" }}>
+                    {" "}
+                    {news.source.news4}{" "}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <img src={news.image.news3} width="100" height="100"></img>
-          <div style={{ textAlign: "center" }}>
-            {" "}
-            {news.headline.news2}
-            <div style={{ marginTop: "10px", color: "gray" }}>
-              {" "}
-              {news.source.news3}
-            </div>
-          </div>
-          <img
-            src={news.image.news4 + " "}
-            width="100"
-            height="100"
-            style={{ marginTop: "100x", color: "gray" }}
-          ></img>
-          <div style={{ textAlign: "center" }}>
-            {news.headline.news4 + " "}
-            <div style={{ marginTop: "10px", color: "gray" }}>
-              {" "}
-              {news.source.news4}{" "}
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

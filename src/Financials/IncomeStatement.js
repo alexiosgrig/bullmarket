@@ -3,9 +3,11 @@ import { Context } from "../Context/Context";
 import { financialmodelingprepApikey } from "../apikey/apikey";
 import { divider } from "./BalanceSheet";
 import { checkNumbers } from "./BalanceSheet";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const IncomeStatement = () => {
   const [context, setContext] = useContext(Context);
+  const [spinner, setSpinner] = useState(true);
   const [dataInfo, setDataInfo] = useState({
     date: [],
     costofgoodsandservicessold: [],
@@ -47,6 +49,7 @@ export const IncomeStatement = () => {
       `https://financialmodelingprep.com/api/v3/income-statement-as-reported/${context}?limit=10&apikey=${financialmodelingprepApikey}`
     );
     const data = await res.json();
+    setSpinner(false);
     setDataInfo({
       date: data
         .map((element) => checkNumbers(element.date))
@@ -234,214 +237,223 @@ export const IncomeStatement = () => {
     fetchCashFlow();
   }, [context]);
   return (
-    <div>
-      <h1> Income Statement </h1>
-      <h6> Numbers to Millions</h6>
-      <table id="simple-board">
-        <tbody>
-          <tr>
-            <th>About</th>
-            {dataInfo.date.map((item) => (
-              <th>{item}</th>
-            ))}
-          </tr>
-          <tr>
-            <td> Cost of goods and services sold</td>
-            {dataInfo.costofgoodsandservicessold.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Net Income Loss</td>
-            {dataInfo.netincomeloss.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Research And Development Expense</td>
-            {dataInfo.researchanddevelopmentexpense.map((item) => (
-              <td> {item === "" ? "N/A" : item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Gross Profit </td>
-            {dataInfo.grossprofit.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Reclassification Adjustment From a
-              OCI for Sale of securities net of tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax.map(
-              (item) => (
-                <td> {item === NaN ? "" : item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Derivative Instrument Gain Loss
-              Before Reclassification After Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax.map(
-              (item) => (
-                <td> {item == NaN ? "" : item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Foreign Currency Transaction And
-              Translation Adjustment Net of Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Weighted Average Number Of Diluted Shares Outstanding</td>
-            {dataInfo.weightedaveragenumberofdilutedsharesoutstanding.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Weighted Average Number Of Shares Outstanding Basic</td>
-            {dataInfo.weightedaveragenumberofsharesoutstandingbasic.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Operating Income Loss</td>
-            {dataInfo.operatingincomeloss.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>Non-Operating Income Expense</td>
-            {dataInfo.nonoperatingincomeexpense.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>
-              Income Loss From Continuing Operations Before Income Taxes
-              Extraordinary Items Non-Controlling Interest
-            </td>
-            {dataInfo.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Available For Sale Securities
-              Adjustment Net of Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Earnings per Share Basic</td>
-            {dataInfo.earningspersharebasic.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>Income Tax Expense Benefit</td>
-            {dataInfo.incometaxexpensebenefit.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Unrealized Holding Gain Loss On
-              Securities a Rising During Period Net of Tax
-            </td>
-            {dataInfo.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Revenue From Contract With Customer Excluding Assessed Tax</td>
-            {dataInfo.revenuefromcontractwithcustomerexcludingassessedtax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Earnings per Share Diluted</td>
-            {dataInfo.earningspersharediluted.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>Operating Expenses</td>
-            {dataInfo.operatingexpenses.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Derivative Instrument Gain Loss
-              After Reclassification And Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Selling General And Admin Is Rative Expense</td>
-            {dataInfo.sellinggeneralandadministrativeexpense.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Derivative Instrument Gain Loss
-              Reclassification After Tax
-            </td>
-            {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>
-              Other Comprehensive Income Loss Net of Tax Portion Attributable to
-              Parent
-            </td>
-            {dataInfo.othercomprehensiveincomelossnetoftaxportionattributabletoparent.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td>Comprehensive Income Net of Tax</td>
-            {dataInfo.comprehensiveincomenetoftax.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+    <div className="Financial">
+      {" "}
+      {spinner ? (
+        <ClipLoader />
+      ) : (
+        <div>
+          <h1> Income Statement </h1>
+          <h6> Numbers to Millions</h6>
+          <table id="simple-board">
+            <tbody>
+              <tr>
+                <th>About</th>
+                {dataInfo.date.map((item) => (
+                  <th>{item}</th>
+                ))}
+              </tr>
+              <tr>
+                <td> Cost of goods and services sold</td>
+                {dataInfo.costofgoodsandservicessold.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Net Income Loss</td>
+                {dataInfo.netincomeloss.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Research And Development Expense</td>
+                {dataInfo.researchanddevelopmentexpense.map((item) => (
+                  <td> {item === "" ? "N/A" : item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Gross Profit </td>
+                {dataInfo.grossprofit.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Loss Reclassification Adjustment
+                  From a OCI for Sale of securities net of tax
+                </td>
+                {dataInfo.othercomprehensiveincomelossreclassificationadjustmentfromaociforsaleofsecuritiesnetoftax.map(
+                  (item) => (
+                    <td> {item === NaN ? "" : item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Loss Derivative Instrument Gain
+                  Loss Before Reclassification After Tax
+                </td>
+                {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax.map(
+                  (item) => (
+                    <td> {item == NaN ? "" : item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Loss Foreign Currency Transaction
+                  And Translation Adjustment Net of Tax
+                </td>
+                {dataInfo.othercomprehensiveincomelossforeigncurrencytransactionandtranslationadjustmentnetoftax.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>Weighted Average Number Of Diluted Shares Outstanding</td>
+                {dataInfo.weightedaveragenumberofdilutedsharesoutstanding.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>Weighted Average Number Of Shares Outstanding Basic</td>
+                {dataInfo.weightedaveragenumberofsharesoutstandingbasic.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>Operating Income Loss</td>
+                {dataInfo.operatingincomeloss.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>Non-Operating Income Expense</td>
+                {dataInfo.nonoperatingincomeexpense.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>
+                  Income Loss From Continuing Operations Before Income Taxes
+                  Extraordinary Items Non-Controlling Interest
+                </td>
+                {dataInfo.incomelossfromcontinuingoperationsbeforeincometaxesextraordinaryitemsnoncontrollinginterest.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Loss Available For Sale Securities
+                  Adjustment Net of Tax
+                </td>
+                {dataInfo.othercomprehensiveincomelossavailableforsalesecuritiesadjustmentnetoftax.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>Earnings per Share Basic</td>
+                {dataInfo.earningspersharebasic.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>Income Tax Expense Benefit</td>
+                {dataInfo.incometaxexpensebenefit.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Unrealized Holding Gain Loss On
+                  Securities a Rising During Period Net of Tax
+                </td>
+                {dataInfo.othercomprehensiveincomeunrealizedholdinggainlossonsecuritiesarisingduringperiodnetoftax.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>
+                  Revenue From Contract With Customer Excluding Assessed Tax
+                </td>
+                {dataInfo.revenuefromcontractwithcustomerexcludingassessedtax.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>Earnings per Share Diluted</td>
+                {dataInfo.earningspersharediluted.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>Operating Expenses</td>
+                {dataInfo.operatingexpenses.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Loss Derivative Instrument Gain
+                  Loss After Reclassification And Tax
+                </td>
+                {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossafterreclassificationandtax.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>Selling General And Admin Is Rative Expense</td>
+                {dataInfo.sellinggeneralandadministrativeexpense.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Loss Derivative Instrument Gain
+                  Loss Reclassification After Tax
+                </td>
+                {dataInfo.othercomprehensiveincomelossderivativeinstrumentgainlossreclassificationaftertax.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>
+                  Other Comprehensive Income Loss Net of Tax Portion
+                  Attributable to Parent
+                </td>
+                {dataInfo.othercomprehensiveincomelossnetoftaxportionattributabletoparent.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td>Comprehensive Income Net of Tax</td>
+                {dataInfo.comprehensiveincomenetoftax.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

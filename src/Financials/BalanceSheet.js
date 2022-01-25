@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { financialmodelingprepApikey } from "../apikey/apikey";
 import { Context } from "../Context/Context";
+import ClipLoader from "react-spinners/ClipLoader";
 // Importing Hooks, Context and API key
 export const divider = 1000000;
 export const checkNumbers = (attribute, constant) => {
@@ -53,7 +54,7 @@ export const BalanceSheet = () => {
   });
   //Initialize some data that we will need to add when we fetch the API
   //
-
+  const [spinner, setSpinner] = useState(true);
   async function fetchBalanceSheet() {
     const res = await fetch(
       `https://financialmodelingprep.com/api/v3/balance-sheet-statement-as-reported/${context}?limit=10&apikey=${financialmodelingprepApikey}`
@@ -62,7 +63,7 @@ export const BalanceSheet = () => {
     // fetch financial model API
     //
     //
-    console.log(typeof data.date);
+    setSpinner(false);
     // Function
     setDataInfo({
       date: data
@@ -236,202 +237,212 @@ export const BalanceSheet = () => {
     fetchBalanceSheet();
   }, [context]);
   return (
-    <div>
-      <h1> Balance Sheet</h1>
-      <table>
-        <tbody>
-          <tr>
-            <th>About</th>
-            {dataInfo.date.map((item) => (
-              <th>{item}</th>
-            ))}
-          </tr>
-          <tr>
-            <td> Liabilities and Stockholders Equity</td>
-            {dataInfo.liabilitiesandstockholdersequity.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Liabilities</td>
-            {dataInfo.liabilities.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Liabilities Current</td>
-            {dataInfo.liabilitiescurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Common Stock Shares Authorized</td>
-            {dataInfo.commonstocksharesauthorized.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Cash and Cash Equivalents at carry ingvalue</td>
-            {dataInfo.cashandcashequivalentsatcarryingvalue.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Retained earnings accumulated deficit</td>
-            {dataInfo.retainedearningsaccumulateddeficit.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Liabilities non-current</td>
-            {dataInfo.liabilitiesnoncurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Cost of goods and services sold</td>
-            {dataInfo.liabilitiesnoncurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Property Plant and Equipment Net</td>
-            {dataInfo.propertyplantandequipmentnet.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Common stocks Including additional paid in capital</td>
-            {dataInfo.commonstocksincludingadditionalpaidincapital.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td> Long Term Debt Current </td>
-            {dataInfo.longtermdebtcurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Common Stock Shares Outstanding </td>
-            {dataInfo.commonstocksharesoutstanding.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Other Liabilities Non-current </td>
-            {dataInfo.otherliabilitiesnoncurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Marketable Securities Current </td>
-            {dataInfo.marketablesecuritiescurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Other Liabilities Current </td>
-            {dataInfo.otherliabilitiescurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Assets Current </td>
-            {dataInfo.assetscurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Long Term Debt Non-Current </td>
-            {dataInfo.longtermdebtnoncurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Contract with Customer Liability Current </td>
-            {dataInfo.contractwithcustomerliabilitycurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Non-Trade Receivables Current </td>
-            {dataInfo.nontradereceivablescurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Common Stock Shares Issued </td>
-            {dataInfo.commonstocksharesissued.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Stock Holders Equity </td>
-            {dataInfo.stockholdersequity.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Accounts Receivable Net Current </td>
-            {dataInfo.accountsreceivablenetcurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Accounts Payable Current </td>
-            {dataInfo.accountspayablecurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Assets </td>
-            {dataInfo.assets.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Assets Non-Current </td>
-            {dataInfo.assetsnoncurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Other Assets Non-Current </td>
-            {dataInfo.otherassetsnoncurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Inventory Net </td>
-            {dataInfo.inventorynet.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Marketable Securities Non-Current </td>
-            {dataInfo.marketablesecuritiesnoncurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-          <tr>
-            <td> Accumulated Other Comprehensive Income Loss Net of Tax </td>
-            {dataInfo.accumulatedothercomprehensiveincomelossnetoftax.map(
-              (item) => (
-                <td>{item}</td>
-              )
-            )}
-          </tr>
-          <tr>
-            <td> Other Assets Current </td>
-            {dataInfo.otherassetscurrent.map((item) => (
-              <td>{item}</td>
-            ))}
-          </tr>
-        </tbody>
-      </table>
+    <div className="Financial">
+      {" "}
+      {spinner ? (
+        <ClipLoader />
+      ) : (
+        <div>
+          <h1> Balance Sheet</h1>
+          <table>
+            <tbody>
+              <tr>
+                <th>About</th>
+                {dataInfo.date.map((item) => (
+                  <th>{item}</th>
+                ))}
+              </tr>
+              <tr>
+                <td> Liabilities and Stockholders Equity</td>
+                {dataInfo.liabilitiesandstockholdersequity.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Liabilities</td>
+                {dataInfo.liabilities.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Liabilities Current</td>
+                {dataInfo.liabilitiescurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Common Stock Shares Authorized</td>
+                {dataInfo.commonstocksharesauthorized.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Cash and Cash Equivalents at carry ingvalue</td>
+                {dataInfo.cashandcashequivalentsatcarryingvalue.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Retained earnings accumulated deficit</td>
+                {dataInfo.retainedearningsaccumulateddeficit.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Liabilities non-current</td>
+                {dataInfo.liabilitiesnoncurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Cost of goods and services sold</td>
+                {dataInfo.liabilitiesnoncurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Property Plant and Equipment Net</td>
+                {dataInfo.propertyplantandequipmentnet.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Common stocks Including additional paid in capital</td>
+                {dataInfo.commonstocksincludingadditionalpaidincapital.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td> Long Term Debt Current </td>
+                {dataInfo.longtermdebtcurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Common Stock Shares Outstanding </td>
+                {dataInfo.commonstocksharesoutstanding.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Other Liabilities Non-current </td>
+                {dataInfo.otherliabilitiesnoncurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Marketable Securities Current </td>
+                {dataInfo.marketablesecuritiescurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Other Liabilities Current </td>
+                {dataInfo.otherliabilitiescurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Assets Current </td>
+                {dataInfo.assetscurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Long Term Debt Non-Current </td>
+                {dataInfo.longtermdebtnoncurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Contract with Customer Liability Current </td>
+                {dataInfo.contractwithcustomerliabilitycurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Non-Trade Receivables Current </td>
+                {dataInfo.nontradereceivablescurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Common Stock Shares Issued </td>
+                {dataInfo.commonstocksharesissued.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Stock Holders Equity </td>
+                {dataInfo.stockholdersequity.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Accounts Receivable Net Current </td>
+                {dataInfo.accountsreceivablenetcurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Accounts Payable Current </td>
+                {dataInfo.accountspayablecurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Assets </td>
+                {dataInfo.assets.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Assets Non-Current </td>
+                {dataInfo.assetsnoncurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Other Assets Non-Current </td>
+                {dataInfo.otherassetsnoncurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Inventory Net </td>
+                {dataInfo.inventorynet.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td> Marketable Securities Non-Current </td>
+                {dataInfo.marketablesecuritiesnoncurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+              <tr>
+                <td>
+                  {" "}
+                  Accumulated Other Comprehensive Income Loss Net of Tax{" "}
+                </td>
+                {dataInfo.accumulatedothercomprehensiveincomelossnetoftax.map(
+                  (item) => (
+                    <td>{item}</td>
+                  )
+                )}
+              </tr>
+              <tr>
+                <td> Other Assets Current </td>
+                {dataInfo.otherassetscurrent.map((item) => (
+                  <td>{item}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

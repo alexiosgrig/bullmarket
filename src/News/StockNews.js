@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { finnhubApikey } from "../apikey/apikey";
 import { Context } from "../Context/Context";
-
+import ClipLoader from "react-spinners/ClipLoader";
 export const StockNews = () => {
   const [context, setContext] = useContext(Context);
+  const [spinner, setSpinner] = useState(true);
   const [news, setNews] = useState({
     headline: "",
     image: "",
@@ -17,6 +18,7 @@ export const StockNews = () => {
     );
     const data = await res.json();
     const [news1, news2, news3, news4] = [data[0], data[1], data[2], data[3]];
+    setSpinner(false);
     setNews({
       headline: {
         headline1: news1.headline,
@@ -41,15 +43,21 @@ export const StockNews = () => {
   useEffect(() => {
     fetchStockNews();
   }, [context]);
-
   return (
-    <div style={{ margin: "100px" }}>
-      <div>
-        <img src={news.image.image1} width="200" height="200"></img>
-        <div> {news.headline.headline1}</div>
-        <div> {news.summary.summary1}</div>
-      </div>
-      <div className="News"></div>
+    <div className="Financial">
+      {" "}
+      {spinner ? (
+        <ClipLoader />
+      ) : (
+        <div style={{ margin: "100px" }}>
+          <div>
+            <img src={news.image.image1} width="200" height="200"></img>
+            <div> {news.headline.headline1}</div>
+            <div> {news.summary.summary1}</div>
+          </div>
+          <div className="News"></div>
+        </div>
+      )}
     </div>
   );
 };

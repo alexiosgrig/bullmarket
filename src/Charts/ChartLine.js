@@ -7,6 +7,7 @@ import * as zoom from "chartjs-plugin-zoom";
 import zoomPlugin from "chartjs-plugin-zoom";
 import hammer from "hammerjs";
 import { BasicInfo } from "../Financials/BasicInfo";
+import ClipLoader from "react-spinners/ClipLoader";
 
 Chart.register(zoomPlugin);
 // import { zoom } from "chartjs-plugin-zoom";
@@ -16,6 +17,7 @@ Chart.register(zoomPlugin);
 
 export default function ChartLine() {
   const [context, setContext] = useContext(Context);
+  const [spinner, setSpinner] = useState(true);
   const [info, setInfo] = useState({});
   const [date, setDate] = useState("Week");
   async function fetchChartMonth() {
@@ -78,6 +80,7 @@ export default function ChartLine() {
           }),
         });
     }
+    setSpinner(false);
     // Checks if the user select to see a Line Chart for a year/month/week and displays the asking info
     //
   }
@@ -92,59 +95,65 @@ export default function ChartLine() {
   };
   // handleChange function sets the date according to what the user selects
   return (
-    //selection field
-    <div>
-      <select
-        id="cars"
-        name="cars"
-        onChange={handleChange}
-        style={{ marginLeft: "100px" }}
-      >
-        <option value="Week">Week</option>
-        <option value="Month">Month</option>
-        <option value="Year">Year</option>
-        <option value="Max">Max</option>
-      </select>
-      <div className="ChartLine">
-        <Line // Line Chart
-          data={{
-            labels: info.stockDate,
-            datasets: [
-              {
-                label: `${context} Price:`, // Displays the the value the user Typed
-                data: info.stockPrice, // Displays the stock price's
-                fill: true,
-                borderColor: "rgb(75,192,192)",
-                tension: 0.1,
-              },
-            ],
-          }}
-          options={{
-            plugins: {
-              zoom: {
-                zoom: {
-                  wheel: {
-                    enabled: true, // SET SCROOL ZOOM TO TRUE
+    <div className="Financial">
+      {spinner ? (
+        <ClipLoader />
+      ) : (
+        <div>
+          <select
+            id="cars"
+            name="cars"
+            onChange={handleChange}
+            style={{ marginLeft: "100px" }}
+          >
+            <option value="Week">Week</option>
+            <option value="Month">Month</option>
+            <option value="Year">Year</option>
+            <option value="Max">Max</option>
+          </select>
+          <div className="ChartLine">
+            <Line // Line Chart
+              data={{
+                labels: info.stockDate,
+                datasets: [
+                  {
+                    label: `${context} Price:`, // Displays the the value the user Typed
+                    data: info.stockPrice, // Displays the stock price's
+                    fill: true,
+                    borderColor: "rgb(75,192,192)",
+                    tension: 0.1,
                   },
-                  mode: "y",
-                  speed: 0.2,
-                  modifierKey: "shift",
+                ],
+              }}
+              options={{
+                plugins: {
+                  zoom: {
+                    zoom: {
+                      wheel: {
+                        enabled: true, // SET SCROOL ZOOM TO TRUE
+                      },
+                      mode: "y",
+                      speed: 0.2,
+                      modifierKey: "shift",
+                    },
+                    pan: {
+                      enabled: true,
+                      mode: "xy",
+                      threshold: 1,
+                    },
+                    pinch: {
+                      enabled: true,
+                    },
+                    mode: "xy",
+                  },
                 },
-                pan: {
-                  enabled: true,
-                  mode: "xy",
-                  threshold: 1,
-                },
-                pinch: {
-                  enabled: true,
-                },
-                mode: "xy",
-              },
-            },
-          }}
-        ></Line>
-        <BasicInfo></BasicInfo>
-      </div>
+              }}
+            ></Line>
+            <BasicInfo></BasicInfo>
+          </div>
+        </div>
+      )}
     </div>
+    //selection field
   );
 }

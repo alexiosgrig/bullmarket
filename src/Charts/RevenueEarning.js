@@ -3,10 +3,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import { Context } from "../Context/Context";
 import { financialmodelingprepApikey } from "../apikey/apikey";
+import ClipLoader from "react-spinners/ClipLoader";
 
 //Imports Hooks, Bar Chart, Context and API key
 export const RevenueEarning = () => {
   const [context, setContext] = useContext(Context);
+  const [spinner, setSpinner] = useState(true);
   const [fetchData, setFetchData] = useState({
     revenue: "",
     date: "",
@@ -18,6 +20,7 @@ export const RevenueEarning = () => {
     const data = await res.json();
     //fetch data from financial modeling API
     //
+    setSpinner(false);
     setFetchData({
       revenue: data
         .slice(0, 4)
@@ -53,9 +56,15 @@ export const RevenueEarning = () => {
   };
 
   return (
-    // Bar Chart
-    <div className="Revenue">
-      <Bar options={options} data={data} />
+    <div className="Financial">
+      {" "}
+      {spinner ? (
+        <ClipLoader /> // Bar Chart
+      ) : (
+        <div className="Revenue">
+          <Bar options={options} data={data} />
+        </div>
+      )}
     </div>
   );
 };

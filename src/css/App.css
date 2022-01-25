@@ -207,3 +207,12 @@ img:hover {
   width: 50%;
   height: auto;
 }
+img {
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.Financial {
+  display: flex;
+  justify-content: center;
+}

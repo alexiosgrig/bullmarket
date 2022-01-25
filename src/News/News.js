@@ -77,45 +77,56 @@ export default function News(props) {
             <div style={{ marginTop: "50px", marginLeft: "100px" }}>
               {" "}
               {news.headline.news1}
-              <div> {news.source.news1}</div>
-              <div style={{ marginTop: "10px", color: "gray" }}>
+              <div>
+                <a href={news.url.news1}></a>
                 {news.source.news1}
+              </div>
+              <div style={{ marginTop: "10px", color: "gray" }}>
+                <a href={news.url.news1}>{news.source.news1}</a>
               </div>
             </div>
             <div className="News">
               <div className="NewsBorder">
-                <img src={news.image.news1} width="500" height="366" />
+                <a href={news.url.news1}>
+                  <img src={news.image.news1} width="500" height="366"></img>
+                </a>
               </div>
 
               <div className="NewsBorderSide">
-                <img src={news.image.news2} width="100" height="100"></img>
+                <a href={news.url.news2}>
+                  <img src={news.image.news2} width="100" height="100"></img>
+                </a>
                 <div style={{ textAlign: "center" }}>
                   {news.headline.news2 + " "}{" "}
                   <div style={{ marginTop: "10px", color: "gray" }}>
                     {" "}
-                    {news.source.news2}
+                    <a href={news.url.news2}> {news.source.news2} </a>
                   </div>
                 </div>
-                <img src={news.image.news3} width="100" height="100"></img>
+                <a href={news.image.news3}>
+                  <img src={news.image.news3} width="100" height="100"></img>
+                </a>
                 <div style={{ textAlign: "center" }}>
                   {" "}
                   {news.headline.news2}
                   <div style={{ marginTop: "10px", color: "gray" }}>
                     {" "}
-                    {news.source.news3}
+                    <a href={news.image.news3}>{news.source.news3}</a>
                   </div>
                 </div>
-                <img
-                  src={news.image.news4 + " "}
-                  width="100"
-                  height="100"
-                  style={{ marginTop: "100x", color: "gray" }}
-                ></img>
+                <a href={news.url.news4}>
+                  <img
+                    src={news.image.news4 + " "}
+                    width="100"
+                    height="100"
+                    style={{ marginTop: "100x", color: "gray" }}
+                  ></img>
+                </a>
                 <div style={{ textAlign: "center" }}>
                   {news.headline.news4 + " "}
                   <div style={{ marginTop: "10px", color: "gray" }}>
                     {" "}
-                    {news.source.news4}{" "}
+                    <a href={news.url.news4}>{news.source.news4} </a>
                   </div>
                 </div>
               </div>

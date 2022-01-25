@@ -104,7 +104,7 @@ export default function ChartLine() {
             id="cars"
             name="cars"
             onChange={handleChange}
-            style={{ marginLeft: "100px" }}
+            // style={{ marginLeft: "100px" }}
           >
             <option value="Week">Week</option>
             <option value="Month">Month</option>
